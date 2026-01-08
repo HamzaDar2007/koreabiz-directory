@@ -1,0 +1,546 @@
+
+> koreabiz-directory-backend@1.0.0 test:e2e
+> jest --config ./test/jest-e2e.json test/media-features.e2e-spec.ts
+
+  console.log
+    DEBUG: JwtStrategy constructor using secret (prefix): test-...
+
+      at new JwtStrategy (../src/modules/auth/strategies/jwt.strategy.ts:18:13)
+          at async Promise.all (index 4)
+          at async Promise.all (index 13)
+
+  console.log
+    DEBUG: Registering user: mediauser-1767809443651@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"325ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:10:45.414Z"}
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"mediauser-1767809443651@example.com","sub":"88b3c9bd-a488-4b7d-b584-61951af1c718","iat":1767809445,"exp":1767810345}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: mediauser-1767809443651@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"mediauser-1767809443651@example.com","sub":"88b3c9bd-a488-4b7d-b584-61951af1c718","iat":1767809445,"exp":1767810345}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: mediauser-1767809443651@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+{"level":"info","message":{"duration":"130ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":400,"url":"/v1/enterprises","user":"88b3c9bd-a488-4b7d-b584-61951af1c718","userAgent":""},"timestamp":"2026-01-07T18:10:45.611Z"}
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"mediauser-1767809443651@example.com","sub":"88b3c9bd-a488-4b7d-b584-61951af1c718","iat":1767809445,"exp":1767810345}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: mediauser-1767809443651@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"mediauser-1767809443651@example.com","sub":"88b3c9bd-a488-4b7d-b584-61951af1c718","iat":1767809445,"exp":1767810345}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: mediauser-1767809443651@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+{"level":"info","message":{"duration":"56ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/media/enterprises/undefined/presigned","user":"88b3c9bd-a488-4b7d-b584-61951af1c718","userAgent":""},"timestamp":"2026-01-07T18:10:45.750Z"}
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"mediauser-1767809443651@example.com","sub":"88b3c9bd-a488-4b7d-b584-61951af1c718","iat":1767809445,"exp":1767810345}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: mediauser-1767809443651@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"mediauser-1767809443651@example.com","sub":"88b3c9bd-a488-4b7d-b584-61951af1c718","iat":1767809445,"exp":1767810345}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: mediauser-1767809443651@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+{"level":"info","message":{"duration":"163ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":500,"url":"/v1/media/enterprises/undefined/register","user":"88b3c9bd-a488-4b7d-b584-61951af1c718","userAgent":""},"timestamp":"2026-01-07T18:10:45.952Z"}
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"mediauser-1767809443651@example.com","sub":"88b3c9bd-a488-4b7d-b584-61951af1c718","iat":1767809445,"exp":1767810345}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: mediauser-1767809443651@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"mediauser-1767809443651@example.com","sub":"88b3c9bd-a488-4b7d-b584-61951af1c718","iat":1767809445,"exp":1767810345}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: mediauser-1767809443651@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+{"level":"info","message":{"duration":"71ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":500,"url":"/v1/media/enterprises/undefined","user":"88b3c9bd-a488-4b7d-b584-61951af1c718","userAgent":""},"timestamp":"2026-01-07T18:10:46.054Z"}
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"mediauser-1767809443651@example.com","sub":"88b3c9bd-a488-4b7d-b584-61951af1c718","iat":1767809445,"exp":1767810345}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: mediauser-1767809443651@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"mediauser-1767809443651@example.com","sub":"88b3c9bd-a488-4b7d-b584-61951af1c718","iat":1767809445,"exp":1767810345}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: mediauser-1767809443651@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+{"level":"info","message":{"duration":"26ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":400,"url":"/v1/media/enterprises/undefined/presigned","user":"88b3c9bd-a488-4b7d-b584-61951af1c718","userAgent":""},"timestamp":"2026-01-07T18:10:46.115Z"}
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"mediauser-1767809443651@example.com","sub":"88b3c9bd-a488-4b7d-b584-61951af1c718","iat":1767809445,"exp":1767810345}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: mediauser-1767809443651@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"mediauser-1767809443651@example.com","sub":"88b3c9bd-a488-4b7d-b584-61951af1c718","iat":1767809445,"exp":1767810345}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: mediauser-1767809443651@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+{"level":"info","message":{"duration":"27ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":400,"url":"/v1/media/enterprises/undefined/register","user":"88b3c9bd-a488-4b7d-b584-61951af1c718","userAgent":""},"timestamp":"2026-01-07T18:10:46.166Z"}
+  console.log
+    DEBUG: JwtAuthGuard error: Unauthorized
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:56:15)
+
+{"level":"info","message":{"duration":"9ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":401,"url":"/v1/media/enterprises/undefined/presigned","userAgent":""},"timestamp":"2026-01-07T18:10:46.199Z"}
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"mediauser-1767809443651@example.com","sub":"88b3c9bd-a488-4b7d-b584-61951af1c718","iat":1767809445,"exp":1767810345}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: mediauser-1767809443651@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"mediauser-1767809443651@example.com","sub":"88b3c9bd-a488-4b7d-b584-61951af1c718","iat":1767809445,"exp":1767810345}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: mediauser-1767809443651@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+{"level":"info","message":{"duration":"31ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":500,"url":"/v1/media/enterprises/undefined/register","user":"88b3c9bd-a488-4b7d-b584-61951af1c718","userAgent":""},"timestamp":"2026-01-07T18:10:46.259Z"}
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"mediauser-1767809443651@example.com","sub":"88b3c9bd-a488-4b7d-b584-61951af1c718","iat":1767809445,"exp":1767810345}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: mediauser-1767809443651@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"mediauser-1767809443651@example.com","sub":"88b3c9bd-a488-4b7d-b584-61951af1c718","iat":1767809445,"exp":1767810345}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: mediauser-1767809443651@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+{"level":"info","message":{"duration":"29ms","ip":"::ffff:127.0.0.1","method":"DELETE","statusCode":500,"url":"/v1/media/enterprises/undefined/undefined","user":"88b3c9bd-a488-4b7d-b584-61951af1c718","userAgent":""},"timestamp":"2026-01-07T18:10:46.308Z"}
+{"level":"info","message":{"duration":"5ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":200,"url":"/v1/auth/resend-verification","userAgent":""},"timestamp":"2026-01-07T18:10:46.344Z"}
+{"level":"info","message":{"duration":"4ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":200,"url":"/v1/auth/forgot-password","userAgent":""},"timestamp":"2026-01-07T18:10:46.374Z"}
+{"level":"info","message":{"duration":"14ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/subscriptions/plans","userAgent":""},"timestamp":"2026-01-07T18:10:46.414Z"}
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"mediauser-1767809443651@example.com","sub":"88b3c9bd-a488-4b7d-b584-61951af1c718","iat":1767809445,"exp":1767810345}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: mediauser-1767809443651@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"mediauser-1767809443651@example.com","sub":"88b3c9bd-a488-4b7d-b584-61951af1c718","iat":1767809445,"exp":1767810345}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: mediauser-1767809443651@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+{"level":"info","message":{"duration":"23ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/subscriptions/status","user":"88b3c9bd-a488-4b7d-b584-61951af1c718","userAgent":""},"timestamp":"2026-01-07T18:10:46.462Z"}
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"mediauser-1767809443651@example.com","sub":"88b3c9bd-a488-4b7d-b584-61951af1c718","iat":1767809445,"exp":1767810345}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: mediauser-1767809443651@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"mediauser-1767809443651@example.com","sub":"88b3c9bd-a488-4b7d-b584-61951af1c718","iat":1767809445,"exp":1767810345}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: mediauser-1767809443651@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+{"level":"info","message":{"duration":"21ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":200,"url":"/v1/subscriptions/change-plan","user":"88b3c9bd-a488-4b7d-b584-61951af1c718","userAgent":""},"timestamp":"2026-01-07T18:10:46.511Z"}
+  console.log
+    DEBUG: JwtAuthGuard error: Unauthorized
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:56:15)
+
+{"level":"info","message":{"duration":"6ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":401,"url":"/v1/subscriptions/status","userAgent":""},"timestamp":"2026-01-07T18:10:46.539Z"}
+  console.error
+    Meilisearch error, falling back to SQL: MeiliSearchCommunicationError: fetch failed
+        at node:internal/deps/undici/undici:13178:13
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+    [0m [90m 55 |[39m       [36mreturn[39m [orderedEnterprises[33m,[39m searchResults[33m.[39mestimatedTotalHits][33m;[39m
+     [90m 56 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 57 |[39m       console[33m.[39merror([32m'Meilisearch error, falling back to SQL:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 58 |[39m       [36mreturn[39m [36mthis[39m[33m.[39mfallbackSqlSearch(dto)[33m;[39m
+     [90m 59 |[39m     }
+     [90m 60 |[39m   }[0m
+
+      at SearchService.searchEnterprises (../src/modules/search/search.service.ts:57:15)
+      at SearchController.searchEnterprises (../src/modules/search/search.controller.ts:13:34)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"68ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/search/enterprises?category=technology&city=seoul&verified=true","userAgent":""},"timestamp":"2026-01-07T18:10:46.634Z"}
+  console.error
+    Meilisearch error, falling back to SQL: MeiliSearchCommunicationError: fetch failed
+        at node:internal/deps/undici/undici:13178:13
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+    [0m [90m 55 |[39m       [36mreturn[39m [orderedEnterprises[33m,[39m searchResults[33m.[39mestimatedTotalHits][33m;[39m
+     [90m 56 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 57 |[39m       console[33m.[39merror([32m'Meilisearch error, falling back to SQL:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 58 |[39m       [36mreturn[39m [36mthis[39m[33m.[39mfallbackSqlSearch(dto)[33m;[39m
+     [90m 59 |[39m     }
+     [90m 60 |[39m   }[0m
+
+      at SearchService.searchEnterprises (../src/modules/search/search.service.ts:57:15)
+      at SearchController.searchEnterprises (../src/modules/search/search.controller.ts:13:34)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"26ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/search/enterprises?lat=37.5665&lng=126.9780&radius=10","userAgent":""},"timestamp":"2026-01-07T18:10:46.688Z"}
+  console.error
+    Meilisearch error, falling back to SQL: MeiliSearchCommunicationError: fetch failed
+        at node:internal/deps/undici/undici:13178:13
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+    [0m [90m 55 |[39m       [36mreturn[39m [orderedEnterprises[33m,[39m searchResults[33m.[39mestimatedTotalHits][33m;[39m
+     [90m 56 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 57 |[39m       console[33m.[39merror([32m'Meilisearch error, falling back to SQL:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 58 |[39m       [36mreturn[39m [36mthis[39m[33m.[39mfallbackSqlSearch(dto)[33m;[39m
+     [90m 59 |[39m     }
+     [90m 60 |[39m   }[0m
+
+      at SearchService.searchEnterprises (../src/modules/search/search.service.ts:57:15)
+      at SearchController.searchEnterprises (../src/modules/search/search.controller.ts:13:34)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"32ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/search/enterprises?minPrice=1&maxPrice=3","userAgent":""},"timestamp":"2026-01-07T18:10:46.746Z"}
+  console.error
+    Meilisearch error, falling back to SQL: MeiliSearchCommunicationError: fetch failed
+        at node:internal/deps/undici/undici:13178:13
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+    [0m [90m 55 |[39m       [36mreturn[39m [orderedEnterprises[33m,[39m searchResults[33m.[39mestimatedTotalHits][33m;[39m
+     [90m 56 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 57 |[39m       console[33m.[39merror([32m'Meilisearch error, falling back to SQL:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 58 |[39m       [36mreturn[39m [36mthis[39m[33m.[39mfallbackSqlSearch(dto)[33m;[39m
+     [90m 59 |[39m     }
+     [90m 60 |[39m   }[0m
+
+      at SearchService.searchEnterprises (../src/modules/search/search.service.ts:57:15)
+      at SearchController.searchEnterprises (../src/modules/search/search.controller.ts:13:34)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"21ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/search/enterprises?sortBy=rating&sortOrder=DESC","userAgent":""},"timestamp":"2026-01-07T18:10:46.794Z"}
+{"level":"info","message":{"duration":"4ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/app/version","userAgent":"KoreaBizApp/1.0.0"},"timestamp":"2026-01-07T18:10:46.824Z"}
+{"level":"info","message":{"duration":"5ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/enterprises/undefined/mobile","userAgent":""},"timestamp":"2026-01-07T18:10:46.853Z"}
+{"level":"info","message":{"duration":"11ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/categories","userAgent":""},"timestamp":"2026-01-07T18:10:46.891Z"}
+{"level":"info","message":{"duration":"8ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/categories","userAgent":""},"timestamp":"2026-01-07T18:10:46.924Z"}
+{"level":"info","message":{"duration":"8ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/categories/all","userAgent":""},"timestamp":"2026-01-07T18:10:46.956Z"}
+{"level":"info","message":{"duration":"7ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/categories/all","userAgent":""},"timestamp":"2026-01-07T18:10:46.984Z"}
+{"level":"info","message":{"duration":"10ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/search/popular","userAgent":""},"timestamp":"2026-01-07T18:10:47.020Z"}
+FAIL test/media-features.e2e-spec.ts (10.912 s)
+  Media & File Upload E2E Tests
+    ≡ƒôü Media Management
+      ΓêÜ should create presigned URL for upload (126 ms)
+      ├ù should register uploaded media (194 ms)
+      ├ù should get enterprise media (110 ms)
+      ΓêÜ should validate media type (50 ms)
+      ΓêÜ should validate file size (52 ms)
+      ΓêÜ should require authentication for media operations (34 ms)
+      ├ù should delete media (113 ms)
+    ≡ƒôº Email System (Mocked)
+      ΓêÜ should handle email verification (30 ms)
+      ΓêÜ should handle password reset request (30 ms)
+    ≡ƒÆ│ Subscription System
+      ΓêÜ should get subscription plans (40 ms)
+      ΓêÜ should get user subscription status (49 ms)
+      ΓêÜ should change subscription plan (46 ms)
+      ΓêÜ should require authentication for subscription operations (31 ms)
+    ≡ƒöì Advanced Search Features
+      ΓêÜ should search with filters (95 ms)
+      ΓêÜ should search with location radius (52 ms)
+      ΓêÜ should search with price range (59 ms)
+      ΓêÜ should sort search results (45 ms)
+    ≡ƒô▒ Mobile API Features
+      ΓêÜ should handle mobile app version check (31 ms)
+      ΓêÜ should get mobile-optimized enterprise data (29 ms)
+    ≡ƒîÉ Internationalization
+      ΓêÜ should handle Korean language requests (36 ms)
+      ΓêÜ should handle English language requests (31 ms)
+    ΓÜí Caching & Performance
+      ΓêÜ should cache frequently accessed data (61 ms)
+      ΓêÜ should handle cache invalidation (35 ms)
+
+  ΓùÅ Media & File Upload E2E Tests ΓÇ║ ≡ƒôü Media Management ΓÇ║ should register uploaded media
+
+    expected 201 "Created", got 500 "Internal Server Error"
+
+      93 |           height: 200
+      94 |         })
+    > 95 |         .expect(201);
+         |          ^
+      96 |
+      97 |       expect(response.body).toHaveProperty('id');
+      98 |       expect(response.body).toHaveProperty('mediaType', 'LOGO');
+
+      at Object.<anonymous> (media-features.e2e-spec.ts:95:10)
+      ----
+      at Test._assertStatus (../node_modules/supertest/lib/test.js:252:14)
+      at ../node_modules/supertest/lib/test.js:308:13
+      at Test._assertFunction (../node_modules/supertest/lib/test.js:285:13)
+      at Test.assert (../node_modules/supertest/lib/test.js:164:23)
+      at Server.localAssert (../node_modules/supertest/lib/test.js:120:14)
+
+  ΓùÅ Media & File Upload E2E Tests ΓÇ║ ≡ƒôü Media Management ΓÇ║ should get enterprise media
+
+    expected 200 "OK", got 500 "Internal Server Error"
+
+      103 |         .get(`/v1/media/enterprises/${enterpriseId}`)
+      104 |         .set('Authorization', `Bearer ${userToken}`)
+    > 105 |         .expect(200);
+          |          ^
+      106 |
+      107 |       expect(Array.isArray(response.body)).toBe(true);
+      108 |     });
+
+      at Object.<anonymous> (media-features.e2e-spec.ts:105:10)
+      ----
+      at Test._assertStatus (../node_modules/supertest/lib/test.js:252:14)
+      at ../node_modules/supertest/lib/test.js:308:13
+      at Test._assertFunction (../node_modules/supertest/lib/test.js:285:13)
+      at Test.assert (../node_modules/supertest/lib/test.js:164:23)
+      at Server.localAssert (../node_modules/supertest/lib/test.js:120:14)
+
+  ΓùÅ Media & File Upload E2E Tests ΓÇ║ ≡ƒôü Media Management ΓÇ║ should delete media
+
+    expected 200 "OK", got 500 "Internal Server Error"
+
+      162 |         .delete(`/v1/media/enterprises/${enterpriseId}/${mediaId}`)
+      163 |         .set('Authorization', `Bearer ${userToken}`)
+    > 164 |         .expect(200);
+          |          ^
+      165 |     });
+      166 |   });
+      167 |
+
+      at Object.<anonymous> (media-features.e2e-spec.ts:164:10)
+      ----
+      at Test._assertStatus (../node_modules/supertest/lib/test.js:252:14)
+      at ../node_modules/supertest/lib/test.js:308:13
+      at Test._assertFunction (../node_modules/supertest/lib/test.js:285:13)
+      at Test.assert (../node_modules/supertest/lib/test.js:164:23)
+      at Server.localAssert (../node_modules/supertest/lib/test.js:120:14)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 20 passed, 23 total
+Snapshots:   0 total
+Time:        11.531 s, estimated 13 s
+Ran all test suites matching /test\\media-features.e2e-spec.ts/i.

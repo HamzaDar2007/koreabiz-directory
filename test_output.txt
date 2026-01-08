@@ -1,0 +1,665 @@
+
+> koreabiz-directory-backend@1.0.0 test:e2e
+> jest --config ./test/jest-e2e.json test/error-handling.e2e-spec.ts
+
+  console.log
+    DEBUG: JwtStrategy constructor using secret (prefix): test-...
+
+      at new JwtStrategy (../src/modules/auth/strategies/jwt.strategy.ts:18:13)
+          at async Promise.all (index 4)
+          at async Promise.all (index 13)
+
+  console.log
+    DEBUG: Registering user: errortest-1767811939543@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"344ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:21.262Z"}
+  console.log
+    DEBUG: JwtAuthGuard error: Unauthorized
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:56:15)
+
+{"level":"info","message":{"duration":"39ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":401,"url":"/v1/users/me","userAgent":""},"timestamp":"2026-01-07T18:52:21.408Z"}
+  console.log
+    DEBUG: JwtAuthGuard error: Unauthorized
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:56:15)
+
+{"level":"info","message":{"duration":"10ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":401,"url":"/v1/users/me","userAgent":""},"timestamp":"2026-01-07T18:52:21.471Z"}
+  console.log
+    DEBUG: JwtAuthGuard error: Unauthorized
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:56:15)
+
+{"level":"info","message":{"duration":"9ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":401,"url":"/v1/users/me","userAgent":""},"timestamp":"2026-01-07T18:52:21.520Z"}
+  console.log
+    DEBUG: JwtAuthGuard error: Unauthorized
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:56:15)
+
+{"level":"info","message":{"duration":"8ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":401,"url":"/v1/users/me","userAgent":""},"timestamp":"2026-01-07T18:52:21.562Z"}
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767811939543@example.com","sub":"e4f10a4a-36f2-4fd9-b799-f26d0cb36247","iat":1767811941,"exp":1767812841}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767811939543@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767811939543@example.com","sub":"e4f10a4a-36f2-4fd9-b799-f26d0cb36247","iat":1767811941,"exp":1767812841}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767811939543@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+{"level":"info","message":{"duration":"80ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":200,"url":"/v1/auth/logout","user":"e4f10a4a-36f2-4fd9-b799-f26d0cb36247","userAgent":""},"timestamp":"2026-01-07T18:52:21.672Z"}
+  console.log
+    DEBUG: JwtAuthGuard token is blacklisted
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:31:17)
+
+{"level":"info","message":{"duration":"6ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":401,"url":"/v1/users/me","userAgent":""},"timestamp":"2026-01-07T18:52:21.706Z"}
+{"level":"info","message":{"duration":"201ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":200,"url":"/v1/auth/login","userAgent":""},"timestamp":"2026-01-07T18:52:21.934Z"}
+{"level":"info","message":{"duration":"7ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":400,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:21.971Z"}
+{"level":"info","message":{"duration":"7ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":400,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:22.010Z"}
+  console.log
+    DEBUG: JwtAuthGuard token is blacklisted
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:31:17)
+
+{"level":"info","message":{"duration":"6ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":401,"url":"/v1/enterprises","userAgent":""},"timestamp":"2026-01-07T18:52:22.049Z"}
+  console.log
+    DEBUG: JwtAuthGuard token is blacklisted
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:31:17)
+
+{"level":"info","message":{"duration":"6ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":401,"url":"/v1/enterprises","userAgent":""},"timestamp":"2026-01-07T18:52:22.084Z"}
+{"level":"info","message":{"duration":"12ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":400,"url":"/v1/enterprises/invalid-uuid","userAgent":""},"timestamp":"2026-01-07T18:52:22.127Z"}
+{"level":"info","message":{"duration":"7ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":400,"url":"/v1/enterprises?page=-1&limit=0","userAgent":""},"timestamp":"2026-01-07T18:52:22.160Z"}
+  console.log
+    DEBUG: JwtAuthGuard token is blacklisted
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:31:17)
+
+{"level":"info","message":{"duration":"5ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":401,"url":"/v1/enterprises","userAgent":""},"timestamp":"2026-01-07T18:52:22.195Z"}
+  console.log
+    DEBUG: JwtAuthGuard token is blacklisted
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:31:17)
+
+{"level":"info","message":{"duration":"6ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":401,"url":"/v1/reviews","userAgent":""},"timestamp":"2026-01-07T18:52:22.227Z"}
+{"level":"info","message":{"duration":"33ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":404,"url":"/v1/enterprises/99999999-9999-9999-9999-999999999999","userAgent":""},"timestamp":"2026-01-07T18:52:22.286Z"}
+  console.log
+    DEBUG: Registering user: errortest-1767811939543@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"303ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":409,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:22.618Z"}
+  console.log
+    DEBUG: JwtAuthGuard token is blacklisted
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:31:17)
+
+{"level":"info","message":{"duration":"6ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":401,"url":"/v1/reviews","userAgent":""},"timestamp":"2026-01-07T18:52:22.649Z"}
+{"level":"info","message":{"duration":"14ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":404,"url":"/v1/non-existent-endpoint","userAgent":""},"timestamp":"2026-01-07T18:52:22.697Z"}
+{"level":"info","message":{"duration":"7ms","ip":"::ffff:127.0.0.1","method":"DELETE","statusCode":404,"url":"/v1/health","userAgent":""},"timestamp":"2026-01-07T18:52:22.729Z"}
+{"level":"info","message":{"duration":"6ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":400,"url":"/v1/auth/login","userAgent":""},"timestamp":"2026-01-07T18:52:22.796Z"}
+{"level":"info","message":{"duration":"19ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/enterprises?search=%27;%20DROP%20TABLE%20users;%20--","userAgent":""},"timestamp":"2026-01-07T18:52:23.292Z"}
+  console.log
+    DEBUG: JwtAuthGuard token is blacklisted
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:31:17)
+
+{"level":"info","message":{"duration":"5ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":401,"url":"/v1/enterprises","userAgent":""},"timestamp":"2026-01-07T18:52:23.325Z"}
+  console.log
+    DEBUG: JwtAuthGuard token is blacklisted
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:31:17)
+
+{"level":"info","message":{"duration":"6ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":401,"url":"/v1/enterprises","userAgent":""},"timestamp":"2026-01-07T18:52:23.359Z"}
+{"level":"info","message":{"duration":"8ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:23.766Z"}
+{"level":"info","message":{"duration":"3ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:23.788Z"}
+{"level":"info","message":{"duration":"5ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:23.824Z"}
+{"level":"info","message":{"duration":"8ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:23.858Z"}
+{"level":"info","message":{"duration":"5ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:23.877Z"}
+{"level":"info","message":{"duration":"6ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:23.902Z"}
+{"level":"info","message":{"duration":"6ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:23.924Z"}
+{"level":"info","message":{"duration":"6ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:23.943Z"}
+{"level":"info","message":{"duration":"10ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:23.969Z"}
+{"level":"info","message":{"duration":"10ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:23.993Z"}
+{"level":"info","message":{"duration":"8ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:24.025Z"}
+{"level":"info","message":{"duration":"5ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:24.046Z"}
+{"level":"info","message":{"duration":"12ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:24.080Z"}
+{"level":"info","message":{"duration":"6ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:24.102Z"}
+{"level":"info","message":{"duration":"7ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:24.124Z"}
+{"level":"info","message":{"duration":"16ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:24.154Z"}
+{"level":"info","message":{"duration":"5ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:24.175Z"}
+{"level":"info","message":{"duration":"6ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:24.192Z"}
+{"level":"info","message":{"duration":"5ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:24.209Z"}
+{"level":"info","message":{"duration":"6ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:24.232Z"}
+  console.log
+    DEBUG: Registering user: ratelimit2@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.log
+    DEBUG: Registering user: ratelimit3@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.log
+    DEBUG: Registering user: ratelimit0@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.log
+    DEBUG: Registering user: ratelimit1@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"946ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:24.543Z"}
+  console.log
+    DEBUG: Registering user: ratelimit4@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"1229ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:24.836Z"}
+  console.log
+    DEBUG: Registering user: ratelimit5@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"1279ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:24.892Z"}
+  console.log
+    DEBUG: Registering user: ratelimit6@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"1309ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:24.927Z"}
+  console.log
+    DEBUG: Registering user: ratelimit7@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"1368ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:24.994Z"}
+  console.log
+    DEBUG: Registering user: ratelimit8@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"1953ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:25.585Z"}
+  console.log
+    DEBUG: Registering user: ratelimit10@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"1980ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:25.618Z"}
+  console.log
+    DEBUG: Registering user: ratelimit11@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.log
+    DEBUG: Registering user: ratelimit12@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"2068ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:25.711Z"}
+  console.log
+    DEBUG: Registering user: ratelimit13@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"2421ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:26.075Z"}
+  console.log
+    DEBUG: Registering user: ratelimit14@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"2535ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:26.194Z"}
+  console.log
+    DEBUG: Registering user: ratelimit15@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.log
+    DEBUG: Registering user: ratelimit16@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"2561ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:26.228Z"}
+  console.log
+    DEBUG: Registering user: ratelimit17@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"2919ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:26.597Z"}
+  console.log
+    DEBUG: Registering user: ratelimit20@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"2993ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:26.688Z"}
+  console.log
+    DEBUG: Registering user: ratelimit18@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"3039ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:26.723Z"}
+  console.log
+    DEBUG: Registering user: ratelimit19@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"3072ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:26.761Z"}
+  console.log
+    DEBUG: Registering user: ratelimit21@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"3482ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:27.184Z"}
+  console.log
+    DEBUG: Registering user: ratelimit23@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"3547ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:27.261Z"}
+  console.log
+    DEBUG: Registering user: ratelimit24@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"3611ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:27.330Z"}
+  console.log
+    DEBUG: Registering user: ratelimit22@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"3736ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:27.444Z"}
+  console.log
+    DEBUG: Registering user: ratelimit26@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"4073ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:27.802Z"}
+  console.log
+    DEBUG: Registering user: ratelimit25@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"4112ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:27.836Z"}
+  console.log
+    DEBUG: Registering user: ratelimit27@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"4222ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:27.959Z"}
+  console.log
+    DEBUG: Registering user: ratelimit28@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"4331ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:28.073Z"}
+{"level":"info","message":{"duration":"4534ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:28.136Z"}
+{"level":"info","message":{"duration":"4575ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:28.224Z"}
+{"level":"info","message":{"duration":"4683ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:28.263Z"}
+{"level":"info","message":{"duration":"4644ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:28.317Z"}
+{"level":"info","message":{"duration":"4763ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:28.353Z"}
+  console.log
+    DEBUG: Registering user: ratelimit29@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.log
+    DEBUG: Registering user: ratelimit30@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+{"level":"info","message":{"duration":"4699ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:28.447Z"}
+{"level":"info","message":{"duration":"4717ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:52:28.470Z"}
+{"level":"info","message":{"duration":"54ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/health","userAgent":""},"timestamp":"2026-01-07T18:52:28.552Z"}
+{"level":"info","message":{"duration":"14ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/categories","userAgent":""},"timestamp":"2026-01-07T18:52:28.605Z"}
+{"level":"info","message":{"duration":"6ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/search/enterprises?query=test","userAgent":""},"timestamp":"2026-01-07T18:52:28.639Z"}
+{"level":"info","message":{"duration":"4ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":200,"url":"/v1/auth/forgot-password","userAgent":""},"timestamp":"2026-01-07T18:52:28.679Z"}
+{"level":"info","message":{"duration":"5ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/search/enterprises?query=","userAgent":""},"timestamp":"2026-01-07T18:52:28.709Z"}
+{"level":"info","message":{"duration":"7ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/search/enterprises?query=%ED%95%9C%EA%B8%80%ED%85%8C%EC%8A%A4%ED%8A%B8%21%40%23%24%25%5E%26%2A%28%29","userAgent":""},"timestamp":"2026-01-07T18:52:28.744Z"}
+{"level":"info","message":{"duration":"6ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/search/enterprises?query=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","userAgent":""},"timestamp":"2026-01-07T18:52:28.776Z"}
+  console.log
+    DEBUG: JwtAuthGuard token is blacklisted
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:31:17)
+
+{"level":"info","message":{"duration":"5ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":401,"url":"/v1/enterprises","userAgent":""},"timestamp":"2026-01-07T18:52:28.829Z"}
+  console.log
+    DEBUG: JwtAuthGuard token is blacklisted
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:31:17)
+
+{"level":"info","message":{"duration":"5ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":401,"url":"/v1/enterprises","userAgent":""},"timestamp":"2026-01-07T18:52:28.843Z"}
+  console.log
+    DEBUG: JwtAuthGuard token is blacklisted
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:31:17)
+
+{"level":"info","message":{"duration":"6ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":401,"url":"/v1/enterprises","userAgent":""},"timestamp":"2026-01-07T18:52:28.857Z"}
+  console.log
+    DEBUG: JwtAuthGuard token is blacklisted
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:31:17)
+
+{"level":"info","message":{"duration":"6ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":401,"url":"/v1/enterprises","userAgent":""},"timestamp":"2026-01-07T18:52:28.870Z"}
+  console.log
+    DEBUG: JwtAuthGuard token is blacklisted
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:31:17)
+
+{"level":"info","message":{"duration":"5ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":401,"url":"/v1/enterprises","userAgent":""},"timestamp":"2026-01-07T18:52:28.886Z"}
+{"level":"info","message":{"duration":"19ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/health","userAgent":""},"timestamp":"2026-01-07T18:52:28.950Z"}
+  console.log
+    DEBUG: JwtAuthGuard token is blacklisted
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:31:17)
+
+{"level":"info","message":{"duration":"5ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":401,"url":"/v1/enterprises","userAgent":""},"timestamp":"2026-01-07T18:52:28.986Z"}
+{"level":"info","message":{"duration":"40ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/health","userAgent":""},"timestamp":"2026-01-07T18:52:29.063Z"}
+{"level":"info","message":{"duration":"48ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/health","userAgent":""},"timestamp":"2026-01-07T18:52:29.075Z"}
+{"level":"info","message":{"duration":"55ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/health","userAgent":""},"timestamp":"2026-01-07T18:52:29.086Z"}
+  console.log
+    DEBUG: JwtAuthGuard token is blacklisted
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:31:17)
+
+{"level":"info","message":{"duration":"5ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":401,"url":"/v1/enterprises","userAgent":""},"timestamp":"2026-01-07T18:52:29.130Z"}
+FAIL test/error-handling.e2e-spec.ts (16.194 s)
+  Error Handling & Edge Cases E2E Tests
+    ≡ƒÜ¿ Authentication Errors
+      ΓêÜ should handle expired JWT tokens (145 ms)
+      ΓêÜ should handle malformed JWT tokens (52 ms)
+      ΓêÜ should handle missing Authorization header (39 ms)
+      ΓêÜ should handle invalid Authorization format (40 ms)
+      ΓêÜ should handle blacklisted tokens (141 ms)
+    ≡ƒô¥ Validation Errors
+      ΓêÜ should validate email format in registration (42 ms)
+      ├ù should validate password strength (37 ms)
+      ├ù should validate required fields (37 ms)
+      ├ù should reject extra fields when forbidNonWhitelisted is true (38 ms)
+      ΓêÜ should validate UUID format (37 ms)
+      ├ù should validate pagination parameters (33 ms)
+      ├ù should validate rating range in reviews (65 ms)
+    ≡ƒöì Database Errors
+      ΓêÜ should handle non-existent resource (404) (59 ms)
+      ΓêÜ should handle duplicate key violations (330 ms)
+      ├ù should handle foreign key violations (37 ms)
+    ≡ƒîÉ HTTP Errors
+      ΓêÜ should handle 404 for non-existent endpoints (43 ms)
+      ΓêÜ should handle 405 for wrong HTTP methods (35 ms)
+      ΓêÜ should handle malformed JSON (30 ms)
+      ΓêÜ should handle missing Content-Type header (31 ms)
+      ΓêÜ should handle oversized requests (420 ms)
+    ≡ƒöÆ Security Errors
+      ΓêÜ should handle SQL injection attempts (78 ms)
+      ├ù should handle XSS attempts in input (30 ms)
+      ├ù should handle CSRF attempts (37 ms)
+    ΓÜí Rate Limiting Errors
+      ΓêÜ should handle rate limit exceeded (5110 ms)
+      ΓêÜ should include rate limit headers (85 ms)
+    ≡ƒöº Service Errors
+      ΓêÜ should handle Redis connection failures gracefully (50 ms)
+      ΓêÜ should handle MeiliSearch failures gracefully (32 ms)
+      ΓêÜ should handle email service failures gracefully (38 ms)
+    ≡ƒôè Edge Cases
+      ΓêÜ should handle empty search queries (30 ms)
+      ΓêÜ should handle special characters in search (34 ms)
+      ΓêÜ should handle very long search queries (32 ms)
+      ├ù should handle concurrent user operations (127 ms)
+      ΓêÜ should handle timezone edge cases (48 ms)
+      ├ù should handle null and undefined values (35 ms)
+    ≡ƒöä Recovery & Resilience
+      ΓêÜ should recover from temporary failures (109 ms)
+      ├ù should maintain data consistency during errors (33 ms)
+
+  ΓùÅ Error Handling & Edge Cases E2E Tests ΓÇ║ ≡ƒô¥ Validation Errors ΓÇ║ should validate password strength
+
+    expect(received).toHaveProperty(path)
+
+    Expected path: "message"
+    Received path: []
+
+    Received value: {"error": {"code": "BAD_REQUEST", "message": ["password must be longer than or equal to 8 characters"], "timestamp": "2026-01-07T18:52:22.008Z"}, "success": false}
+
+      126 |         .expect(400);
+      127 |
+    > 128 |       expect(response.body).toHaveProperty('message');
+          |                             ^
+      129 |     });
+      130 |
+      131 |     it('should validate required fields', async () => {
+
+      at Object.<anonymous> (error-handling.e2e-spec.ts:128:29)
+
+  ΓùÅ Error Handling & Edge Cases E2E Tests ΓÇ║ ≡ƒô¥ Validation Errors ΓÇ║ should validate required fields
+
+    expected 400 "Bad Request", got 401 "Unauthorized"
+
+      148 |           shortDescription: 'Missing name field'
+      149 |         })
+    > 150 |         .expect(400);
+          |          ^
+      151 |
+      152 |       expect(response.body).toHaveProperty('message');
+      153 |     });
+
+      at Object.<anonymous> (error-handling.e2e-spec.ts:150:10)
+      ----
+      at Test._assertStatus (../node_modules/supertest/lib/test.js:252:14)
+      at ../node_modules/supertest/lib/test.js:308:13
+      at Test._assertFunction (../node_modules/supertest/lib/test.js:285:13)
+      at Test.assert (../node_modules/supertest/lib/test.js:164:23)
+      at Server.localAssert (../node_modules/supertest/lib/test.js:120:14)
+
+  ΓùÅ Error Handling & Edge Cases E2E Tests ΓÇ║ ≡ƒô¥ Validation Errors ΓÇ║ should reject extra fields when forbidNonWhitelisted is true
+
+    expected 400 "Bad Request", got 401 "Unauthorized"
+
+      162 |           extraField: 'This should be rejected'
+      163 |         })
+    > 164 |         .expect(400);
+          |          ^
+      165 |
+      166 |       expect(response.body).toHaveProperty('message');
+      167 |     });
+
+      at Object.<anonymous> (error-handling.e2e-spec.ts:164:10)
+      ----
+      at Test._assertStatus (../node_modules/supertest/lib/test.js:252:14)
+      at ../node_modules/supertest/lib/test.js:308:13
+      at Test._assertFunction (../node_modules/supertest/lib/test.js:285:13)
+      at Test.assert (../node_modules/supertest/lib/test.js:164:23)
+      at Server.localAssert (../node_modules/supertest/lib/test.js:120:14)
+
+  ΓùÅ Error Handling & Edge Cases E2E Tests ΓÇ║ ≡ƒô¥ Validation Errors ΓÇ║ should validate pagination parameters
+
+    expect(received).toHaveProperty(path)
+
+    Expected path: "message"
+    Received path: []
+
+    Received value: {"error": {"code": "BAD_REQUEST", "message": ["page must not be less than 1", "limit must not be less than 1"], "timestamp": "2026-01-07T18:52:22.157Z"}, "success": false}
+
+      178 |         .expect(400);
+      179 |
+    > 180 |       expect(response.body).toHaveProperty('message');
+          |                             ^
+      181 |     });
+      182 |
+      183 |     it('should validate rating range in reviews', async () => {
+
+      at Object.<anonymous> (error-handling.e2e-spec.ts:180:29)
+
+  ΓùÅ Error Handling & Edge Cases E2E Tests ΓÇ║ ≡ƒô¥ Validation Errors ΓÇ║ should validate rating range in reviews
+
+    expected 400 "Bad Request", got 401 "Unauthorized"
+
+      199 |           comment: 'Invalid rating test'
+      200 |         })
+    > 201 |         .expect(400);
+          |          ^
+      202 |
+      203 |       expect(response.body).toHaveProperty('message');
+      204 |     });
+
+      at Object.<anonymous> (error-handling.e2e-spec.ts:201:10)
+      ----
+      at Test._assertStatus (../node_modules/supertest/lib/test.js:252:14)
+      at ../node_modules/supertest/lib/test.js:308:13
+      at Test._assertFunction (../node_modules/supertest/lib/test.js:285:13)
+      at Test.assert (../node_modules/supertest/lib/test.js:164:23)
+      at Server.localAssert (../node_modules/supertest/lib/test.js:120:14)
+
+  ΓùÅ Error Handling & Edge Cases E2E Tests ΓÇ║ ≡ƒöì Database Errors ΓÇ║ should handle foreign key violations
+
+    expected 400 "Bad Request", got 401 "Unauthorized"
+
+      233 |           comment: 'Review for non-existent enterprise'
+      234 |         })
+    > 235 |         .expect(400);
+          |          ^
+      236 |
+      237 |       expect(response.body).toHaveProperty('message');
+      238 |     });
+
+      at Object.<anonymous> (error-handling.e2e-spec.ts:235:10)
+      ----
+      at Test._assertStatus (../node_modules/supertest/lib/test.js:252:14)
+      at ../node_modules/supertest/lib/test.js:308:13
+      at Test._assertFunction (../node_modules/supertest/lib/test.js:285:13)
+      at Test.assert (../node_modules/supertest/lib/test.js:164:23)
+      at Server.localAssert (../node_modules/supertest/lib/test.js:120:14)
+
+  ΓùÅ Error Handling & Edge Cases E2E Tests ΓÇ║ ≡ƒöÆ Security Errors ΓÇ║ should handle XSS attempts in input
+
+    expected 201 "Created", got 401 "Unauthorized"
+
+      296 |           shortDescription: 'XSS test'
+      297 |         })
+    > 298 |         .expect(201);
+          |          ^
+      299 |
+      300 |       // Should sanitize the input
+      301 |       expect(response.body.name).not.toContain('<script>');
+
+      at Object.<anonymous> (error-handling.e2e-spec.ts:298:10)
+      ----
+      at Test._assertStatus (../node_modules/supertest/lib/test.js:252:14)
+      at ../node_modules/supertest/lib/test.js:308:13
+      at Test._assertFunction (../node_modules/supertest/lib/test.js:285:13)
+      at Test.assert (../node_modules/supertest/lib/test.js:164:23)
+      at Server.localAssert (../node_modules/supertest/lib/test.js:120:14)
+
+  ΓùÅ Error Handling & Edge Cases E2E Tests ΓÇ║ ≡ƒöÆ Security Errors ΓÇ║ should handle CSRF attempts
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: 401
+    Received array: [201, 403]
+
+      311 |           shortDescription: 'CSRF test'
+      312 |         })
+    > 313 |         .expect((res) => {
+          |          ^
+      314 |           // Should either succeed (if CORS allows) or fail with CORS error
+      315 |           expect([201, 403]).toContain(res.status);
+      316 |         });
+
+      at Object.<anonymous> (error-handling.e2e-spec.ts:313:10)
+      ----
+      at error-handling.e2e-spec.ts:315:30
+      at ../node_modules/supertest/lib/test.js:308:13
+      at Test._assertFunction (../node_modules/supertest/lib/test.js:285:13)
+      at Test.assert (../node_modules/supertest/lib/test.js:164:23)
+      at Server.localAssert (../node_modules/supertest/lib/test.js:120:14)
+
+  ΓùÅ Error Handling & Edge Cases E2E Tests ΓÇ║ ≡ƒôè Edge Cases ΓÇ║ should handle concurrent user operations
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 201
+    Received: 401
+
+      423 |       // All should succeed
+      424 |       responses.forEach(response => {
+    > 425 |         expect(response.status).toBe(201);
+          |                                 ^
+      426 |       });
+      427 |     });
+      428 |
+
+      at error-handling.e2e-spec.ts:425:33
+          at Array.forEach (<anonymous>)
+      at Object.<anonymous> (error-handling.e2e-spec.ts:424:17)
+
+  ΓùÅ Error Handling & Edge Cases E2E Tests ΓÇ║ ≡ƒôè Edge Cases ΓÇ║ should handle null and undefined values
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: 401
+    Received array: [201, 400]
+
+      445 |           description: undefined
+      446 |         })
+    > 447 |         .expect((res) => {
+          |          ^
+      448 |           expect([201, 400]).toContain(res.status);
+      449 |         });
+      450 |     });
+
+      at Object.<anonymous> (error-handling.e2e-spec.ts:447:10)
+      ----
+      at error-handling.e2e-spec.ts:448:30
+      at ../node_modules/supertest/lib/test.js:308:13
+      at Test._assertFunction (../node_modules/supertest/lib/test.js:285:13)
+      at Test.assert (../node_modules/supertest/lib/test.js:164:23)
+      at Server.localAssert (../node_modules/supertest/lib/test.js:120:14)
+
+  ΓùÅ Error Handling & Edge Cases E2E Tests ΓÇ║ ≡ƒöä Recovery & Resilience ΓÇ║ should maintain data consistency during errors
+
+    expected 400 "Bad Request", got 401 "Unauthorized"
+
+      474 |           shortDescription: 'Test'
+      475 |         })
+    > 476 |         .expect(400);
+          |          ^
+      477 |
+      478 |       // Verify no partial data was created
+      479 |       const response = await request(app.getHttpServer())
+
+      at Object.<anonymous> (error-handling.e2e-spec.ts:476:10)
+      ----
+      at Test._assertStatus (../node_modules/supertest/lib/test.js:252:14)
+      at ../node_modules/supertest/lib/test.js:308:13
+      at Test._assertFunction (../node_modules/supertest/lib/test.js:285:13)
+      at Test.assert (../node_modules/supertest/lib/test.js:164:23)
+      at Server.localAssert (../node_modules/supertest/lib/test.js:120:14)
+
+Test Suites: 1 failed, 1 total
+Tests:       11 failed, 25 passed, 36 total
+Snapshots:   0 total
+Time:        16.852 s, estimated 25 s
+Ran all test suites matching /test\\error-handling.e2e-spec.ts/i.

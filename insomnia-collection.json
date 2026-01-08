@@ -1,0 +1,1142 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2024-01-01T00:00:00.000Z",
+  "__export_source": "insomnia.desktop.app:v2023.5.8",
+  "resources": [
+    {
+      "_id": "req_group_auth",
+      "_type": "request_group",
+      "name": "🔐 Authentication",
+      "description": "Authentication endpoints",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1000000000
+    },
+    {
+      "_id": "req_auth_register",
+      "_type": "request",
+      "parentId": "req_group_auth",
+      "name": "Register",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/auth/register",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"Password123!\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"phoneNumber\": \"+82-10-1234-5678\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1000000000
+    },
+    {
+      "_id": "req_auth_login",
+      "_type": "request",
+      "parentId": "req_group_auth",
+      "name": "Login",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/auth/login",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"Password123!\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -999999999
+    },
+    {
+      "_id": "req_auth_refresh",
+      "_type": "request",
+      "parentId": "req_group_auth",
+      "name": "Refresh Token",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/auth/refresh",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"refreshToken\": \"{{ _.refreshToken }}\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -999999998
+    },
+    {
+      "_id": "req_auth_logout",
+      "_type": "request",
+      "parentId": "req_group_auth",
+      "name": "Logout",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/auth/logout",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"refreshToken\": \"{{ _.refreshToken }}\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -999999997
+    },
+    {
+      "_id": "req_auth_logout_all",
+      "_type": "request",
+      "parentId": "req_group_auth",
+      "name": "Logout All",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/auth/logout-all",
+      "method": "POST",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -999999996
+    },
+    {
+      "_id": "req_auth_forgot_password",
+      "_type": "request",
+      "parentId": "req_group_auth",
+      "name": "Forgot Password",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/auth/forgot-password",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"test@example.com\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -999999995
+    },
+    {
+      "_id": "req_auth_reset_password",
+      "_type": "request",
+      "parentId": "req_group_auth",
+      "name": "Reset Password",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/auth/reset-password",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"token\": \"reset-token-here\",\n  \"password\": \"NewPassword123!\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -999999994
+    },
+    {
+      "_id": "req_auth_resend_verification",
+      "_type": "request",
+      "parentId": "req_group_auth",
+      "name": "Resend Verification",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/auth/resend-verification",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"test@example.com\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -999999993
+    },
+    {
+      "_id": "req_group_users",
+      "_type": "request_group",
+      "name": "👤 Users",
+      "description": "User management endpoints",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -900000000
+    },
+    {
+      "_id": "req_users_profile",
+      "_type": "request",
+      "parentId": "req_group_users",
+      "name": "Get Profile",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/users/me",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -900000000
+    },
+    {
+      "_id": "req_users_update_profile",
+      "_type": "request",
+      "parentId": "req_group_users",
+      "name": "Update Profile",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/users/me",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"phoneNumber\": \"+82-10-1234-5678\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -899999999
+    },
+    {
+      "_id": "req_group_enterprises",
+      "_type": "request_group",
+      "name": "🏢 Enterprises",
+      "description": "Enterprise management endpoints",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -800000000
+    },
+    {
+      "_id": "req_enterprises_list",
+      "_type": "request",
+      "parentId": "req_group_enterprises",
+      "name": "List Enterprises",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/enterprises?page=1&limit=20",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "page",
+          "value": "1"
+        },
+        {
+          "name": "limit",
+          "value": "20"
+        },
+        {
+          "name": "category",
+          "value": ""
+        },
+        {
+          "name": "city",
+          "value": ""
+        },
+        {
+          "name": "verified",
+          "value": ""
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -800000000
+    },
+    {
+      "_id": "req_enterprises_get",
+      "_type": "request",
+      "parentId": "req_group_enterprises",
+      "name": "Get Enterprise",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/enterprises/{{ _.enterpriseId }}",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -799999999
+    },
+    {
+      "_id": "req_enterprises_create",
+      "_type": "request",
+      "parentId": "req_group_enterprises",
+      "name": "Create Enterprise",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/enterprises",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Test Enterprise\",\n  \"description\": \"A test enterprise\",\n  \"categoryId\": \"category-id\",\n  \"cityId\": \"city-id\",\n  \"address\": \"123 Test Street\",\n  \"phoneNumber\": \"+82-2-1234-5678\",\n  \"email\": \"contact@testenterprise.com\",\n  \"website\": \"https://testenterprise.com\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -799999998
+    },
+    {
+      "_id": "req_enterprises_update",
+      "_type": "request",
+      "parentId": "req_group_enterprises",
+      "name": "Update Enterprise",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/enterprises/{{ _.enterpriseId }}",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Updated Enterprise\",\n  \"description\": \"Updated description\",\n  \"phoneNumber\": \"+82-2-9876-5432\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -799999997
+    },
+    {
+      "_id": "req_enterprises_mobile",
+      "_type": "request",
+      "parentId": "req_group_enterprises",
+      "name": "Get Mobile Data",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/enterprises/{{ _.enterpriseId }}/mobile",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -799999996
+    },
+    {
+      "_id": "req_enterprises_mobile_upload",
+      "_type": "request",
+      "parentId": "req_group_enterprises",
+      "name": "Upload Mobile Image",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/enterprises/{{ _.enterpriseId }}/mobile/images",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"imageUrl\": \"https://example.com/image.jpg\",\n  \"alt\": \"Mobile image\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -799999995
+    },
+    {
+      "_id": "req_group_search",
+      "_type": "request_group",
+      "name": "🔍 Search",
+      "description": "Search endpoints",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -700000000
+    },
+    {
+      "_id": "req_search_enterprises",
+      "_type": "request",
+      "parentId": "req_group_search",
+      "name": "Search Enterprises",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/search/enterprises",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "q",
+          "value": "restaurant"
+        },
+        {
+          "name": "page",
+          "value": "1"
+        },
+        {
+          "name": "limit",
+          "value": "20"
+        },
+        {
+          "name": "category",
+          "value": ""
+        },
+        {
+          "name": "city",
+          "value": ""
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -700000000
+    },
+    {
+      "_id": "req_search_popular",
+      "_type": "request",
+      "parentId": "req_group_search",
+      "name": "Get Popular",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/search/popular",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -699999999
+    },
+    {
+      "_id": "req_search_featured",
+      "_type": "request",
+      "parentId": "req_group_search",
+      "name": "Get Featured",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/search/featured",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -699999998
+    },
+    {
+      "_id": "req_group_categories",
+      "_type": "request_group",
+      "name": "📂 Categories",
+      "description": "Category endpoints",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -600000000
+    },
+    {
+      "_id": "req_categories_list",
+      "_type": "request",
+      "parentId": "req_group_categories",
+      "name": "List Categories",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/categories?page=1&limit=20",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "page",
+          "value": "1"
+        },
+        {
+          "name": "limit",
+          "value": "20"
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -600000000
+    },
+    {
+      "_id": "req_categories_all",
+      "_type": "request",
+      "parentId": "req_group_categories",
+      "name": "Get All Categories",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/categories/all",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -599999999
+    },
+    {
+      "_id": "req_categories_by_slug",
+      "_type": "request",
+      "parentId": "req_group_categories",
+      "name": "Get Category by Slug",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/categories/restaurants",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -599999998
+    },
+    {
+      "_id": "req_group_cities",
+      "_type": "request_group",
+      "name": "🏙️ Cities",
+      "description": "City endpoints",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -500000000
+    },
+    {
+      "_id": "req_cities_list",
+      "_type": "request",
+      "parentId": "req_group_cities",
+      "name": "List Cities",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/cities?page=1&limit=20",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "page",
+          "value": "1"
+        },
+        {
+          "name": "limit",
+          "value": "20"
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -500000000
+    },
+    {
+      "_id": "req_cities_all",
+      "_type": "request",
+      "parentId": "req_group_cities",
+      "name": "Get All Cities",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/cities/all",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -499999999
+    },
+    {
+      "_id": "req_cities_by_slug",
+      "_type": "request",
+      "parentId": "req_group_cities",
+      "name": "Get City by Slug",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/cities/seoul",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -499999998
+    },
+    {
+      "_id": "req_group_reviews",
+      "_type": "request_group",
+      "name": "⭐ Reviews",
+      "description": "Review endpoints",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -400000000
+    },
+    {
+      "_id": "req_reviews_create",
+      "_type": "request",
+      "parentId": "req_group_reviews",
+      "name": "Create Review",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/reviews",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"enterpriseId\": \"{{ _.enterpriseId }}\",\n  \"rating\": 5,\n  \"comment\": \"Great service and food!\",\n  \"visitDate\": \"2024-01-01\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -400000000
+    },
+    {
+      "_id": "req_reviews_list",
+      "_type": "request",
+      "parentId": "req_group_reviews",
+      "name": "List Reviews",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/reviews?page=1&limit=20",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "page",
+          "value": "1"
+        },
+        {
+          "name": "limit",
+          "value": "20"
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -399999999
+    },
+    {
+      "_id": "req_reviews_by_enterprise",
+      "_type": "request",
+      "parentId": "req_group_reviews",
+      "name": "List Reviews by Enterprise",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/reviews/enterprise/{{ _.enterpriseId }}?page=1&limit=20",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "page",
+          "value": "1"
+        },
+        {
+          "name": "limit",
+          "value": "20"
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -399999998
+    },
+    {
+      "_id": "req_group_favorites",
+      "_type": "request_group",
+      "name": "❤️ Favorites",
+      "description": "Favorite endpoints",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -300000000
+    },
+    {
+      "_id": "req_favorites_add",
+      "_type": "request",
+      "parentId": "req_group_favorites",
+      "name": "Add Favorite",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/favorites",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"enterpriseId\": \"{{ _.enterpriseId }}\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -300000000
+    },
+    {
+      "_id": "req_favorites_remove",
+      "_type": "request",
+      "parentId": "req_group_favorites",
+      "name": "Remove Favorite",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/favorites/{{ _.enterpriseId }}",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -299999999
+    },
+    {
+      "_id": "req_favorites_list",
+      "_type": "request",
+      "parentId": "req_group_favorites",
+      "name": "List Favorites",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/favorites?page=1&limit=20",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "page",
+          "value": "1"
+        },
+        {
+          "name": "limit",
+          "value": "20"
+        }
+      ],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -299999998
+    },
+    {
+      "_id": "req_group_claims",
+      "_type": "request_group",
+      "name": "📋 Claims",
+      "description": "Claim endpoints",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -200000000
+    },
+    {
+      "_id": "req_claims_submit",
+      "_type": "request",
+      "parentId": "req_group_claims",
+      "name": "Submit Claim",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/claims",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"enterpriseId\": \"{{ _.enterpriseId }}\",\n  \"reason\": \"I am the owner of this business\",\n  \"evidence\": \"Business registration documents attached\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -200000000
+    },
+    {
+      "_id": "req_claims_list",
+      "_type": "request",
+      "parentId": "req_group_claims",
+      "name": "List Claims",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/claims?page=1&limit=20",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "page",
+          "value": "1"
+        },
+        {
+          "name": "limit",
+          "value": "20"
+        }
+      ],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -199999999
+    },
+    {
+      "_id": "req_group_media",
+      "_type": "request_group",
+      "name": "📷 Media",
+      "description": "Media management endpoints",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -100000000
+    },
+    {
+      "_id": "req_media_presigned",
+      "_type": "request",
+      "parentId": "req_group_media",
+      "name": "Create Presigned URL",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/media/enterprises/{{ _.enterpriseId }}/presigned",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"fileName\": \"image.jpg\",\n  \"fileType\": \"image/jpeg\",\n  \"fileSize\": 1024000\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -100000000
+    },
+    {
+      "_id": "req_media_register",
+      "_type": "request",
+      "parentId": "req_group_media",
+      "name": "Register Media",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/media/enterprises/{{ _.enterpriseId }}/register",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"fileName\": \"image.jpg\",\n  \"fileUrl\": \"https://s3.amazonaws.com/bucket/image.jpg\",\n  \"fileType\": \"image/jpeg\",\n  \"fileSize\": 1024000,\n  \"alt\": \"Enterprise image\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -99999999
+    },
+    {
+      "_id": "req_media_list",
+      "_type": "request",
+      "parentId": "req_group_media",
+      "name": "Get Enterprise Media",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/media/enterprises/{{ _.enterpriseId }}",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -99999998
+    },
+    {
+      "_id": "req_media_delete",
+      "_type": "request",
+      "parentId": "req_group_media",
+      "name": "Delete Media",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/media/enterprises/{{ _.enterpriseId }}/{{ _.mediaId }}",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -99999997
+    },
+    {
+      "_id": "req_group_subscriptions",
+      "_type": "request_group",
+      "name": "💳 Subscriptions",
+      "description": "Subscription endpoints",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -50000000
+    },
+    {
+      "_id": "req_subscriptions_plans",
+      "_type": "request",
+      "parentId": "req_group_subscriptions",
+      "name": "Get All Plans",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/subscriptions/plans",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -50000000
+    },
+    {
+      "_id": "req_subscriptions_status",
+      "_type": "request",
+      "parentId": "req_group_subscriptions",
+      "name": "Get Global Status",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/subscriptions/status",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -49999999
+    },
+    {
+      "_id": "req_subscriptions_checkout",
+      "_type": "request",
+      "parentId": "req_group_subscriptions",
+      "name": "Checkout",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/subscriptions/checkout",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"planId\": \"premium\",\n  \"billingCycle\": \"monthly\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -49999998
+    },
+    {
+      "_id": "req_subscriptions_change_plan",
+      "_type": "request",
+      "parentId": "req_group_subscriptions",
+      "name": "Change Plan (Global)",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/subscriptions/change-plan",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"planId\": \"premium\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -49999997
+    },
+    {
+      "_id": "req_subscriptions_enterprise_change",
+      "_type": "request",
+      "parentId": "req_group_subscriptions",
+      "name": "Change Enterprise Plan",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/subscriptions/enterprise/{{ _.enterpriseId }}/change-plan",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"planId\": \"premium\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -49999996
+    },
+    {
+      "_id": "req_subscriptions_enterprise_status",
+      "_type": "request",
+      "parentId": "req_group_subscriptions",
+      "name": "Get Enterprise Status",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/subscriptions/enterprise/{{ _.enterpriseId }}/status",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -49999995
+    },
+    {
+      "_id": "req_subscriptions_feature_access",
+      "_type": "request",
+      "parentId": "req_group_subscriptions",
+      "name": "Check Feature Access",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/subscriptions/enterprise/{{ _.enterpriseId }}/feature/premium_analytics",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -49999994
+    },
+    {
+      "_id": "req_group_health",
+      "_type": "request_group",
+      "name": "🏥 Health",
+      "description": "Health check endpoints",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -10000000
+    },
+    {
+      "_id": "req_health_check",
+      "_type": "request",
+      "parentId": "req_group_health",
+      "name": "Health Check",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/health",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -10000000
+    },
+    {
+      "_id": "req_health_ready",
+      "_type": "request",
+      "parentId": "req_group_health",
+      "name": "Readiness Check",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/health/ready",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -9999999
+    },
+    {
+      "_id": "req_health_live",
+      "_type": "request",
+      "parentId": "req_group_health",
+      "name": "Liveness Check",
+      "description": "",
+      "url": "{{ _.baseUrl }}/v1/health/live",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -9999998
+    },
+    {
+      "_id": "env_base",
+      "_type": "environment",
+      "name": "Base Environment",
+      "data": {
+        "baseUrl": "http://localhost:3001",
+        "accessToken": "",
+        "refreshToken": "",
+        "enterpriseId": "",
+        "mediaId": ""
+      },
+      "dataPropertyOrder": {
+        "&": ["baseUrl", "accessToken", "refreshToken", "enterpriseId", "mediaId"]
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1000000000
+    }
+  ]
+}

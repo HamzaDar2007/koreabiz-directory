@@ -1,0 +1,1931 @@
+
+> koreabiz-directory-backend@1.0.0 test:e2e
+> jest --config ./test/jest-e2e.json test/error-handling.e2e-spec.ts
+
+  console.log
+    DEBUG: JwtStrategy constructor using secret (prefix): test-...
+
+      at new JwtStrategy (../src/modules/auth/strategies/jwt.strategy.ts:18:13)
+          at async Promise.all (index 4)
+          at async Promise.all (index 13)
+
+  console.log
+    DEBUG: Registering user: errortest-1767809826258@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"573ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:08.375Z"}
+  console.log
+    DEBUG: JwtAuthGuard error: Unauthorized
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:56:15)
+
+{"level":"info","message":{"duration":"32ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":401,"url":"/v1/users/me","userAgent":""},"timestamp":"2026-01-07T18:17:08.498Z"}
+  console.log
+    DEBUG: JwtAuthGuard error: Unauthorized
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:56:15)
+
+{"level":"info","message":{"duration":"9ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":401,"url":"/v1/users/me","userAgent":""},"timestamp":"2026-01-07T18:17:08.544Z"}
+  console.log
+    DEBUG: JwtAuthGuard error: Unauthorized
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:56:15)
+
+{"level":"info","message":{"duration":"9ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":401,"url":"/v1/users/me","userAgent":""},"timestamp":"2026-01-07T18:17:08.586Z"}
+  console.log
+    DEBUG: JwtAuthGuard error: Unauthorized
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:56:15)
+
+{"level":"info","message":{"duration":"8ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":401,"url":"/v1/users/me","userAgent":""},"timestamp":"2026-01-07T18:17:08.625Z"}
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809828,"exp":1767810728}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809828,"exp":1767810728}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+{"level":"info","message":{"duration":"108ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":200,"url":"/v1/auth/logout","user":"97fad270-7a01-4a9a-b558-d98e8731efe9","userAgent":""},"timestamp":"2026-01-07T18:17:08.773Z"}
+  console.log
+    DEBUG: JwtAuthGuard token is blacklisted
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:31:17)
+
+{"level":"info","message":{"duration":"10ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":401,"url":"/v1/users/me","userAgent":""},"timestamp":"2026-01-07T18:17:08.819Z"}
+{"level":"info","message":{"duration":"204ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":200,"url":"/v1/auth/login","userAgent":""},"timestamp":"2026-01-07T18:17:09.063Z"}
+{"level":"info","message":{"duration":"12ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":400,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:09.115Z"}
+{"level":"info","message":{"duration":"8ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":400,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:09.171Z"}
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+{"level":"info","message":{"duration":"34ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":400,"url":"/v1/enterprises","user":"97fad270-7a01-4a9a-b558-d98e8731efe9","userAgent":""},"timestamp":"2026-01-07T18:17:09.246Z"}
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+{"level":"info","message":{"duration":"39ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":400,"url":"/v1/enterprises","user":"97fad270-7a01-4a9a-b558-d98e8731efe9","userAgent":""},"timestamp":"2026-01-07T18:17:09.325Z"}
+{"level":"info","message":{"duration":"18ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":400,"url":"/v1/enterprises/invalid-uuid","userAgent":""},"timestamp":"2026-01-07T18:17:09.380Z"}
+{"level":"info","message":{"duration":"12ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":400,"url":"/v1/enterprises?page=-1&limit=0","userAgent":""},"timestamp":"2026-01-07T18:17:09.434Z"}
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.error
+    Failed to index enterprise in Meilisearch: MeiliSearchCommunicationError: fetch failed
+        at node:internal/deps/undici/undici:13178:13
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+    [0m [90m 66 |[39m       [36mawait[39m [36mthis[39m[33m.[39mmeilisearchService[33m.[39mindexEnterprise(saved)[33m;[39m
+     [90m 67 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 68 |[39m       console[33m.[39merror([32m'Failed to index enterprise in Meilisearch:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 69 |[39m     }
+     [90m 70 |[39m
+     [90m 71 |[39m     [36mreturn[39m saved[33m;[39m[0m
+
+      at EnterprisesService.create (../src/modules/enterprises/enterprises.service.ts:68:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"114ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/enterprises","user":"97fad270-7a01-4a9a-b558-d98e8731efe9","userAgent":""},"timestamp":"2026-01-07T18:17:09.589Z"}
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+{"level":"info","message":{"duration":"38ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":400,"url":"/v1/reviews","user":"97fad270-7a01-4a9a-b558-d98e8731efe9","userAgent":""},"timestamp":"2026-01-07T18:17:09.674Z"}
+{"level":"info","message":{"duration":"38ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":404,"url":"/v1/enterprises/99999999-9999-9999-9999-999999999999","userAgent":""},"timestamp":"2026-01-07T18:17:09.759Z"}
+  console.log
+    DEBUG: Registering user: errortest@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"222ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:10.022Z"}
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+{"level":"info","message":{"duration":"32ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":400,"url":"/v1/reviews","user":"97fad270-7a01-4a9a-b558-d98e8731efe9","userAgent":""},"timestamp":"2026-01-07T18:17:10.090Z"}
+{"level":"info","message":{"duration":"15ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":404,"url":"/v1/non-existent-endpoint","userAgent":""},"timestamp":"2026-01-07T18:17:10.143Z"}
+{"level":"info","message":{"duration":"10ms","ip":"::ffff:127.0.0.1","method":"DELETE","statusCode":404,"url":"/v1/health","userAgent":""},"timestamp":"2026-01-07T18:17:10.187Z"}
+{"level":"info","message":{"duration":"8ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":400,"url":"/v1/auth/login","userAgent":""},"timestamp":"2026-01-07T18:17:10.297Z"}
+[Nest] 15256  - 01/07/2026, 11:17:10 PM   ERROR [GlobalExceptionFilter] Internal server error
+[Nest] 15256  - 01/07/2026, 11:17:10 PM   ERROR [GlobalExceptionFilter] Object:
+{
+  "timestamp": "2026-01-07T18:17:10.706Z",
+  "method": "POST",
+  "url": "/v1/enterprises",
+  "status": 500,
+  "code": "INTERNAL_ERROR",
+  "message": "request entity too large",
+  "stack": "PayloadTooLargeError: request entity too large\n    at readStream (F:\\projects\\KoreaBiz-Directory\\backend\\node_modules\\raw-body\\index.js:163:17)\n    at getRawBody (F:\\projects\\KoreaBiz-Directory\\backend\\node_modules\\raw-body\\index.js:116:12)\n    at read (F:\\projects\\KoreaBiz-Directory\\backend\\node_modules\\body-parser\\lib\\read.js:79:3)\n    at jsonParser (F:\\projects\\KoreaBiz-Directory\\backend\\node_modules\\body-parser\\lib\\types\\json.js:138:5)\n    at Layer.handle [as handle_request] (F:\\projects\\KoreaBiz-Directory\\backend\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (F:\\projects\\KoreaBiz-Directory\\backend\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at F:\\projects\\KoreaBiz-Directory\\backend\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (F:\\projects\\KoreaBiz-Directory\\backend\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (F:\\projects\\KoreaBiz-Directory\\backend\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at expressInit (F:\\projects\\KoreaBiz-Directory\\backend\\node_modules\\express\\lib\\middleware\\init.js:40:5)\n    at Layer.handle [as handle_request] (F:\\projects\\KoreaBiz-Directory\\backend\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (F:\\projects\\KoreaBiz-Directory\\backend\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at F:\\projects\\KoreaBiz-Directory\\backend\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (F:\\projects\\KoreaBiz-Directory\\backend\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (F:\\projects\\KoreaBiz-Directory\\backend\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at query (F:\\projects\\KoreaBiz-Directory\\backend\\node_modules\\express\\lib\\middleware\\query.js:45:5)\n    at Layer.handle [as handle_request] (F:\\projects\\KoreaBiz-Directory\\backend\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (F:\\projects\\KoreaBiz-Directory\\backend\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at F:\\projects\\KoreaBiz-Directory\\backend\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (F:\\projects\\KoreaBiz-Directory\\backend\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (F:\\projects\\KoreaBiz-Directory\\backend\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (F:\\projects\\KoreaBiz-Directory\\backend\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at Function.handle (F:\\projects\\KoreaBiz-Directory\\backend\\node_modules\\express\\lib\\application.js:181:10)\n    at Server.app (F:\\projects\\KoreaBiz-Directory\\backend\\node_modules\\express\\lib\\express.js:39:9)\n    at Server.emit (node:events:519:28)\n    at Server.emit (node:domain:488:12)\n    at parserOnIncoming (node:_http_server:1140:12)\n    at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17)",
+  "ip": "::ffff:127.0.0.1"
+}
+
+{"level":"info","message":{"duration":"77ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/enterprises?search=%27;%20DROP%20TABLE%20users;%20--","userAgent":""},"timestamp":"2026-01-07T18:17:10.917Z"}
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.error
+    Failed to index enterprise in Meilisearch: MeiliSearchCommunicationError: fetch failed
+        at node:internal/deps/undici/undici:13178:13
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+    [0m [90m 66 |[39m       [36mawait[39m [36mthis[39m[33m.[39mmeilisearchService[33m.[39mindexEnterprise(saved)[33m;[39m
+     [90m 67 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 68 |[39m       console[33m.[39merror([32m'Failed to index enterprise in Meilisearch:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 69 |[39m     }
+     [90m 70 |[39m
+     [90m 71 |[39m     [36mreturn[39m saved[33m;[39m[0m
+
+      at EnterprisesService.create (../src/modules/enterprises/enterprises.service.ts:68:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"63ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/enterprises","user":"97fad270-7a01-4a9a-b558-d98e8731efe9","userAgent":""},"timestamp":"2026-01-07T18:17:11.019Z"}
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.error
+    Failed to index enterprise in Meilisearch: MeiliSearchCommunicationError: fetch failed
+        at node:internal/deps/undici/undici:13178:13
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+    [0m [90m 66 |[39m       [36mawait[39m [36mthis[39m[33m.[39mmeilisearchService[33m.[39mindexEnterprise(saved)[33m;[39m
+     [90m 67 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 68 |[39m       console[33m.[39merror([32m'Failed to index enterprise in Meilisearch:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 69 |[39m     }
+     [90m 70 |[39m
+     [90m 71 |[39m     [36mreturn[39m saved[33m;[39m[0m
+
+      at EnterprisesService.create (../src/modules/enterprises/enterprises.service.ts:68:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"53ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/enterprises","user":"97fad270-7a01-4a9a-b558-d98e8731efe9","userAgent":""},"timestamp":"2026-01-07T18:17:11.116Z"}
+{"level":"info","message":{"duration":"11ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:11.967Z"}
+{"level":"info","message":{"duration":"8ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:11.991Z"}
+{"level":"info","message":{"duration":"6ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:12.017Z"}
+{"level":"info","message":{"duration":"8ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:12.053Z"}
+{"level":"info","message":{"duration":"17ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:12.095Z"}
+{"level":"info","message":{"duration":"7ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:12.114Z"}
+{"level":"info","message":{"duration":"11ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:12.137Z"}
+{"level":"info","message":{"duration":"13ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:12.162Z"}
+{"level":"info","message":{"duration":"7ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:12.186Z"}
+{"level":"info","message":{"duration":"5ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:12.210Z"}
+{"level":"info","message":{"duration":"6ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:12.248Z"}
+{"level":"info","message":{"duration":"5ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:12.263Z"}
+{"level":"info","message":{"duration":"8ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:12.290Z"}
+{"level":"info","message":{"duration":"5ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:12.310Z"}
+{"level":"info","message":{"duration":"10ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:12.356Z"}
+{"level":"info","message":{"duration":"11ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:12.378Z"}
+{"level":"info","message":{"duration":"7ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:12.415Z"}
+{"level":"info","message":{"duration":"6ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:12.437Z"}
+{"level":"info","message":{"duration":"4ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:12.463Z"}
+{"level":"info","message":{"duration":"5ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":429,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:12.499Z"}
+  console.log
+    DEBUG: Registering user: ratelimit0@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.log
+    DEBUG: Registering user: ratelimit6@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.log
+    DEBUG: Registering user: ratelimit5@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.log
+    DEBUG: Registering user: ratelimit3@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"1714ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:13.256Z"}
+  console.log
+    DEBUG: Registering user: ratelimit8@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"2187ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:13.781Z"}
+  console.log
+    DEBUG: Registering user: ratelimit9@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.log
+    DEBUG: Registering user: ratelimit7@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"2273ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:13.875Z"}
+  console.log
+    DEBUG: Registering user: ratelimit11@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"2364ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:13.977Z"}
+  console.log
+    DEBUG: Registering user: ratelimit12@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"2703ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:14.339Z"}
+  console.log
+    DEBUG: Registering user: ratelimit14@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"2808ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:14.454Z"}
+  console.log
+    DEBUG: Registering user: ratelimit17@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.log
+    DEBUG: Registering user: ratelimit15@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"2891ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:14.554Z"}
+  console.log
+    DEBUG: Registering user: ratelimit19@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"3275ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:14.962Z"}
+  console.log
+    DEBUG: Registering user: ratelimit20@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"3325ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:15.019Z"}
+  console.log
+    DEBUG: Registering user: ratelimit21@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.log
+    DEBUG: Registering user: ratelimit23@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"3430ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:15.145Z"}
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"3510ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:15.233Z"}
+  console.log
+    DEBUG: Registering user: ratelimit24@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"3789ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:15.520Z"}
+  console.log
+    DEBUG: Registering user: ratelimit26@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"3854ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:15.595Z"}
+  console.log
+    DEBUG: Registering user: ratelimit30@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.log
+    DEBUG: Registering user: ratelimit29@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"4007ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:15.764Z"}
+  console.log
+    DEBUG: Registering user: ratelimit31@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"4303ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:16.089Z"}
+  console.log
+    DEBUG: Registering user: ratelimit1@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"4464ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:16.266Z"}
+  console.log
+    DEBUG: Registering user: ratelimit4@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"4492ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:16.323Z"}
+  console.log
+    DEBUG: Registering user: ratelimit2@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"4597ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:16.407Z"}
+  console.log
+    DEBUG: Registering user: ratelimit10@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"4851ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:16.711Z"}
+  console.log
+    DEBUG: Registering user: ratelimit13@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.log
+    DEBUG: Registering user: ratelimit18@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"5000ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:16.875Z"}
+  console.log
+    DEBUG: Registering user: ratelimit16@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"5078ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:16.968Z"}
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"5505ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:17.069Z"}
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"5563ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:17.136Z"}
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"5622ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:17.207Z"}
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"5612ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:17.267Z"}
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"5619ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:17.367Z"}
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"5865ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:17.419Z"}
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"5548ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:17.447Z"}
+  console.log
+    DEBUG: Registering user: ratelimit22@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"5621ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:17.534Z"}
+  console.log
+    DEBUG: Registering user: ratelimit25@example.com
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:34:13)
+
+  console.error
+    Failed to send verification email: Error: connect ECONNREFUSED 127.0.0.1:587
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+      errno: -4078,
+      code: 'ESOCKET',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 587,
+      command: 'CONN'
+    }
+
+    [0m [90m 40 |[39m       [36mawait[39m [36mthis[39m[33m.[39memailService[33m.[39msendVerificationEmail(user[33m.[39memail[33m,[39m [32m'dummy-token'[39m)[33m;[39m
+     [90m 41 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 42 |[39m       console[33m.[39merror([32m'Failed to send verification email:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 43 |[39m     }
+     [90m 44 |[39m
+     [90m 45 |[39m     [36mconst[39m payload [33m=[39m { email[33m:[39m user[33m.[39memail[33m,[39m sub[33m:[39m user[33m.[39mid[33m,[39m iat[33m:[39m [33mMath[39m[33m.[39mfloor([33mDate[39m[33m.[39mnow() [33m/[39m [35m1000[39m) }[33m;[39m[0m
+
+      at AuthService.register (../src/modules/auth/auth.service.ts:42:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"5634ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/auth/register","userAgent":""},"timestamp":"2026-01-07T18:17:17.581Z"}
+{"level":"info","message":{"duration":"36ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/health","userAgent":""},"timestamp":"2026-01-07T18:17:17.648Z"}
+{"level":"info","message":{"duration":"14ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/categories","userAgent":""},"timestamp":"2026-01-07T18:17:17.694Z"}
+  console.error
+    Meilisearch error, falling back to SQL: MeiliSearchCommunicationError: fetch failed
+        at node:internal/deps/undici/undici:13178:13
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+    [0m [90m 55 |[39m       [36mreturn[39m [orderedEnterprises[33m,[39m searchResults[33m.[39mestimatedTotalHits][33m;[39m
+     [90m 56 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 57 |[39m       console[33m.[39merror([32m'Meilisearch error, falling back to SQL:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 58 |[39m       [36mreturn[39m [36mthis[39m[33m.[39mfallbackSqlSearch(dto)[33m;[39m
+     [90m 59 |[39m     }
+     [90m 60 |[39m   }[0m
+
+      at SearchService.searchEnterprises (../src/modules/search/search.service.ts:57:15)
+      at SearchController.searchEnterprises (../src/modules/search/search.controller.ts:13:34)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"48ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/search/enterprises?query=test","userAgent":""},"timestamp":"2026-01-07T18:17:17.772Z"}
+{"level":"info","message":{"duration":"5ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":200,"url":"/v1/auth/forgot-password","userAgent":""},"timestamp":"2026-01-07T18:17:17.810Z"}
+  console.error
+    Meilisearch error, falling back to SQL: MeiliSearchCommunicationError: fetch failed
+        at node:internal/deps/undici/undici:13178:13
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+    [0m [90m 55 |[39m       [36mreturn[39m [orderedEnterprises[33m,[39m searchResults[33m.[39mestimatedTotalHits][33m;[39m
+     [90m 56 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 57 |[39m       console[33m.[39merror([32m'Meilisearch error, falling back to SQL:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 58 |[39m       [36mreturn[39m [36mthis[39m[33m.[39mfallbackSqlSearch(dto)[33m;[39m
+     [90m 59 |[39m     }
+     [90m 60 |[39m   }[0m
+
+      at SearchService.searchEnterprises (../src/modules/search/search.service.ts:57:15)
+      at SearchController.searchEnterprises (../src/modules/search/search.controller.ts:13:34)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"30ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/search/enterprises?query=","userAgent":""},"timestamp":"2026-01-07T18:17:17.867Z"}
+  console.error
+    Meilisearch error, falling back to SQL: MeiliSearchCommunicationError: fetch failed
+        at node:internal/deps/undici/undici:13178:13
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+    [0m [90m 55 |[39m       [36mreturn[39m [orderedEnterprises[33m,[39m searchResults[33m.[39mestimatedTotalHits][33m;[39m
+     [90m 56 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 57 |[39m       console[33m.[39merror([32m'Meilisearch error, falling back to SQL:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 58 |[39m       [36mreturn[39m [36mthis[39m[33m.[39mfallbackSqlSearch(dto)[33m;[39m
+     [90m 59 |[39m     }
+     [90m 60 |[39m   }[0m
+
+      at SearchService.searchEnterprises (../src/modules/search/search.service.ts:57:15)
+      at SearchController.searchEnterprises (../src/modules/search/search.controller.ts:13:34)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"29ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/search/enterprises?query=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","userAgent":""},"timestamp":"2026-01-07T18:17:17.930Z"}
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.error
+    Failed to index enterprise in Meilisearch: MeiliSearchCommunicationError: fetch failed
+        at node:internal/deps/undici/undici:13178:13
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+    [0m [90m 66 |[39m       [36mawait[39m [36mthis[39m[33m.[39mmeilisearchService[33m.[39mindexEnterprise(saved)[33m;[39m
+     [90m 67 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 68 |[39m       console[33m.[39merror([32m'Failed to index enterprise in Meilisearch:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 69 |[39m     }
+     [90m 70 |[39m
+     [90m 71 |[39m     [36mreturn[39m saved[33m;[39m[0m
+
+      at EnterprisesService.create (../src/modules/enterprises/enterprises.service.ts:68:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"196ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/enterprises","user":"97fad270-7a01-4a9a-b558-d98e8731efe9","userAgent":""},"timestamp":"2026-01-07T18:17:18.167Z"}
+  console.error
+    Failed to index enterprise in Meilisearch: MeiliSearchCommunicationError: fetch failed
+        at node:internal/deps/undici/undici:13178:13
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+    [0m [90m 66 |[39m       [36mawait[39m [36mthis[39m[33m.[39mmeilisearchService[33m.[39mindexEnterprise(saved)[33m;[39m
+     [90m 67 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 68 |[39m       console[33m.[39merror([32m'Failed to index enterprise in Meilisearch:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 69 |[39m     }
+     [90m 70 |[39m
+     [90m 71 |[39m     [36mreturn[39m saved[33m;[39m[0m
+
+      at EnterprisesService.create (../src/modules/enterprises/enterprises.service.ts:68:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"200ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/enterprises","user":"97fad270-7a01-4a9a-b558-d98e8731efe9","userAgent":""},"timestamp":"2026-01-07T18:17:18.183Z"}
+  console.error
+    Failed to index enterprise in Meilisearch: MeiliSearchCommunicationError: fetch failed
+        at node:internal/deps/undici/undici:13178:13
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+    [0m [90m 66 |[39m       [36mawait[39m [36mthis[39m[33m.[39mmeilisearchService[33m.[39mindexEnterprise(saved)[33m;[39m
+     [90m 67 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 68 |[39m       console[33m.[39merror([32m'Failed to index enterprise in Meilisearch:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 69 |[39m     }
+     [90m 70 |[39m
+     [90m 71 |[39m     [36mreturn[39m saved[33m;[39m[0m
+
+      at EnterprisesService.create (../src/modules/enterprises/enterprises.service.ts:68:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"203ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/enterprises","user":"97fad270-7a01-4a9a-b558-d98e8731efe9","userAgent":""},"timestamp":"2026-01-07T18:17:18.197Z"}
+  console.error
+    Failed to index enterprise in Meilisearch: MeiliSearchCommunicationError: fetch failed
+        at node:internal/deps/undici/undici:13178:13
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+    [0m [90m 66 |[39m       [36mawait[39m [36mthis[39m[33m.[39mmeilisearchService[33m.[39mindexEnterprise(saved)[33m;[39m
+     [90m 67 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 68 |[39m       console[33m.[39merror([32m'Failed to index enterprise in Meilisearch:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 69 |[39m     }
+     [90m 70 |[39m
+     [90m 71 |[39m     [36mreturn[39m saved[33m;[39m[0m
+
+      at EnterprisesService.create (../src/modules/enterprises/enterprises.service.ts:68:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"201ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/enterprises","user":"97fad270-7a01-4a9a-b558-d98e8731efe9","userAgent":""},"timestamp":"2026-01-07T18:17:18.211Z"}
+  console.error
+    Failed to index enterprise in Meilisearch: MeiliSearchCommunicationError: fetch failed
+        at node:internal/deps/undici/undici:13178:13
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+    [0m [90m 66 |[39m       [36mawait[39m [36mthis[39m[33m.[39mmeilisearchService[33m.[39mindexEnterprise(saved)[33m;[39m
+     [90m 67 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 68 |[39m       console[33m.[39merror([32m'Failed to index enterprise in Meilisearch:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 69 |[39m     }
+     [90m 70 |[39m
+     [90m 71 |[39m     [36mreturn[39m saved[33m;[39m[0m
+
+      at EnterprisesService.create (../src/modules/enterprises/enterprises.service.ts:68:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"224ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/enterprises","user":"97fad270-7a01-4a9a-b558-d98e8731efe9","userAgent":""},"timestamp":"2026-01-07T18:17:18.247Z"}
+{"level":"info","message":{"duration":"15ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/health","userAgent":""},"timestamp":"2026-01-07T18:17:18.291Z"}
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.error
+    Failed to index enterprise in Meilisearch: MeiliSearchCommunicationError: fetch failed
+        at node:internal/deps/undici/undici:13178:13
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+    [0m [90m 66 |[39m       [36mawait[39m [36mthis[39m[33m.[39mmeilisearchService[33m.[39mindexEnterprise(saved)[33m;[39m
+     [90m 67 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 68 |[39m       console[33m.[39merror([32m'Failed to index enterprise in Meilisearch:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 69 |[39m     }
+     [90m 70 |[39m
+     [90m 71 |[39m     [36mreturn[39m saved[33m;[39m[0m
+
+      at EnterprisesService.create (../src/modules/enterprises/enterprises.service.ts:68:15)
+      at ../node_modules/@nestjs/core/router/router-execution-context.js:46:28
+      at ../node_modules/@nestjs/core/router/router-proxy.js:9:17
+
+{"level":"info","message":{"duration":"44ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":201,"url":"/v1/enterprises","user":"97fad270-7a01-4a9a-b558-d98e8731efe9","userAgent":""},"timestamp":"2026-01-07T18:17:18.358Z"}
+{"level":"info","message":{"duration":"42ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/health","userAgent":""},"timestamp":"2026-01-07T18:17:18.430Z"}
+{"level":"info","message":{"duration":"54ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/health","userAgent":""},"timestamp":"2026-01-07T18:17:18.445Z"}
+{"level":"info","message":{"duration":"65ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/health","userAgent":""},"timestamp":"2026-01-07T18:17:18.459Z"}
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+  console.log
+    DEBUG: JwtStrategy validating payload: {"email":"errortest-1767809826258@example.com","sub":"97fad270-7a01-4a9a-b558-d98e8731efe9","iat":1767809829,"exp":1767810729}
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:27:13)
+
+  console.log
+    DEBUG: JwtStrategy user found: errortest-1767809826258@example.com
+
+      at JwtStrategy.validate (../src/modules/auth/strategies/jwt.strategy.ts:36:13)
+
+  console.log
+    DEBUG: JwtAuthGuard super.canActivate result: true
+
+      at JwtAuthGuard.canActivate (../src/common/guards/jwt-auth.guard.ts:38:15)
+
+{"level":"info","message":{"duration":"25ms","ip":"::ffff:127.0.0.1","method":"POST","statusCode":400,"url":"/v1/enterprises","user":"97fad270-7a01-4a9a-b558-d98e8731efe9","userAgent":""},"timestamp":"2026-01-07T18:17:18.527Z"}
+{"level":"info","message":{"duration":"26ms","ip":"::ffff:127.0.0.1","method":"GET","statusCode":200,"url":"/v1/enterprises","userAgent":""},"timestamp":"2026-01-07T18:17:18.572Z"}
+FAIL test/error-handling.e2e-spec.ts (19.609 s)
+  Error Handling & Edge Cases E2E Tests
+    ≡ƒÜ¿ Authentication Errors
+      ΓêÜ should handle expired JWT tokens (113 ms)
+      ΓêÜ should handle malformed JWT tokens (47 ms)
+      ΓêÜ should handle missing Authorization header (35 ms)
+      ΓêÜ should handle invalid Authorization format (44 ms)
+      ΓêÜ should handle blacklisted tokens (192 ms)
+    ≡ƒô¥ Validation Errors
+      ├ù should validate email format in registration (56 ms)
+      ├ù should validate password strength (49 ms)
+      ├ù should validate required fields (74 ms)
+      ├ù should reject extra fields when forbidNonWhitelisted is true (80 ms)
+      ΓêÜ should validate UUID format (55 ms)
+      ├ù should validate pagination parameters (54 ms)
+      ├ù should validate rating range in reviews (240 ms)
+    ≡ƒöì Database Errors
+      ΓêÜ should handle non-existent resource (404) (84 ms)
+      ├ù should handle duplicate key violations (258 ms)
+      ├ù should handle foreign key violations (70 ms)
+    ≡ƒîÉ HTTP Errors
+      ΓêÜ should handle 404 for non-existent endpoints (52 ms)
+      ΓêÜ should handle 405 for wrong HTTP methods (47 ms)
+      ΓêÜ should handle malformed JSON (53 ms)
+      ΓêÜ should handle missing Content-Type header (50 ms)
+      ├ù should handle oversized requests (464 ms)
+    ≡ƒöÆ Security Errors
+      ΓêÜ should handle SQL injection attempts (160 ms)
+      ΓêÜ should handle XSS attempts in input (104 ms)
+      ΓêÜ should handle CSRF attempts (93 ms)
+    ΓÜí Rate Limiting Errors
+      ΓêÜ should handle rate limit exceeded (6463 ms)
+      ΓêÜ should include rate limit headers (69 ms)
+    ≡ƒöº Service Errors
+      ΓêÜ should handle Redis connection failures gracefully (45 ms)
+      ΓêÜ should handle MeiliSearch failures gracefully (76 ms)
+      ΓêÜ should handle email service failures gracefully (34 ms)
+    ≡ƒôè Edge Cases
+      ΓêÜ should handle empty search queries (60 ms)
+      ├ù should handle special characters in search (6 ms)
+      ΓêÜ should handle very long search queries (54 ms)
+      ΓêÜ should handle concurrent user operations (319 ms)
+      ΓêÜ should handle timezone edge cases (40 ms)
+      ΓêÜ should handle null and undefined values (68 ms)
+    ≡ƒöä Recovery & Resilience
+      ΓêÜ should recover from temporary failures (115 ms)
+      ΓêÜ should maintain data consistency during errors (102 ms)
+
+  ΓùÅ Error Handling & Edge Cases E2E Tests ΓÇ║ ≡ƒô¥ Validation Errors ΓÇ║ should validate email format in registration
+
+    expect(received).toHaveProperty(path)
+
+    Expected path: "message"
+    Received path: []
+
+    Received value: {"error": {"code": "BAD_REQUEST", "message": ["email must be an email"], "timestamp": "2026-01-07T18:17:09.111Z"}, "success": false}
+
+      111 |         .expect(400);
+      112 |
+    > 113 |       expect(response.body).toHaveProperty('message');
+          |                             ^
+      114 |       expect(Array.isArray(response.body.message)).toBe(true);
+      115 |     });
+      116 |
+
+      at Object.<anonymous> (error-handling.e2e-spec.ts:113:29)
+
+  ΓùÅ Error Handling & Edge Cases E2E Tests ΓÇ║ ≡ƒô¥ Validation Errors ΓÇ║ should validate password strength
+
+    expect(received).toHaveProperty(path)
+
+    Expected path: "message"
+    Received path: []
+
+    Received value: {"error": {"code": "BAD_REQUEST", "message": ["password must be longer than or equal to 8 characters"], "timestamp": "2026-01-07T18:17:09.168Z"}, "success": false}
+
+      125 |         .expect(400);
+      126 |
+    > 127 |       expect(response.body).toHaveProperty('message');
+          |                             ^
+      128 |     });
+      129 |
+      130 |     it('should validate required fields', async () => {
+
+      at Object.<anonymous> (error-handling.e2e-spec.ts:127:29)
+
+  ΓùÅ Error Handling & Edge Cases E2E Tests ΓÇ║ ≡ƒô¥ Validation Errors ΓÇ║ should validate required fields
+
+    expect(received).toHaveProperty(path)
+
+    Expected path: "message"
+    Received path: []
+
+    Received value: {"error": {"code": "BAD_REQUEST", "message": ["name must be longer than or equal to 1 characters", "name should not be empty", "name must be a string"], "timestamp": "2026-01-07T18:17:09.243Z"}, "success": false}
+
+      149 |         .expect(400);
+      150 |
+    > 151 |       expect(response.body).toHaveProperty('message');
+          |                             ^
+      152 |     });
+      153 |
+      154 |     it('should reject extra fields when forbidNonWhitelisted is true', async () => {
+
+      at Object.<anonymous> (error-handling.e2e-spec.ts:151:29)
+
+  ΓùÅ Error Handling & Edge Cases E2E Tests ΓÇ║ ≡ƒô¥ Validation Errors ΓÇ║ should reject extra fields when forbidNonWhitelisted is true
+
+    expect(received).toHaveProperty(path)
+
+    Expected path: "message"
+    Received path: []
+
+    Received value: {"error": {"code": "BAD_REQUEST", "message": ["property extraField should not exist"], "timestamp": "2026-01-07T18:17:09.321Z"}, "success": false}
+
+      163 |         .expect(400);
+      164 |
+    > 165 |       expect(response.body).toHaveProperty('message');
+          |                             ^
+      166 |     });
+      167 |
+      168 |     it('should validate UUID format', async () => {
+
+      at Object.<anonymous> (error-handling.e2e-spec.ts:165:29)
+
+  ΓùÅ Error Handling & Edge Cases E2E Tests ΓÇ║ ≡ƒô¥ Validation Errors ΓÇ║ should validate pagination parameters
+
+    expect(received).toHaveProperty(path)
+
+    Expected path: "message"
+    Received path: []
+
+    Received value: {"error": {"code": "BAD_REQUEST", "message": ["page must not be less than 1", "limit must not be less than 1"], "timestamp": "2026-01-07T18:17:09.431Z"}, "success": false}
+
+      177 |         .expect(400);
+      178 |
+    > 179 |       expect(response.body).toHaveProperty('message');
+          |                             ^
+      180 |     });
+      181 |
+      182 |     it('should validate rating range in reviews', async () => {
+
+      at Object.<anonymous> (error-handling.e2e-spec.ts:179:29)
+
+  ΓùÅ Error Handling & Edge Cases E2E Tests ΓÇ║ ≡ƒô¥ Validation Errors ΓÇ║ should validate rating range in reviews
+
+    expect(received).toHaveProperty(path)
+
+    Expected path: "message"
+    Received path: []
+
+    Received value: {"error": {"code": "BAD_REQUEST", "message": ["rating must not be greater than 5"], "timestamp": "2026-01-07T18:17:09.672Z"}, "success": false}
+
+      200 |         .expect(400);
+      201 |
+    > 202 |       expect(response.body).toHaveProperty('message');
+          |                             ^
+      203 |     });
+      204 |   });
+      205 |
+
+      at Object.<anonymous> (error-handling.e2e-spec.ts:202:29)
+
+  ΓùÅ Error Handling & Edge Cases E2E Tests ΓÇ║ ≡ƒöì Database Errors ΓÇ║ should handle duplicate key violations
+
+    expected 409 "Conflict", got 201 "Created"
+
+      220 |           displayName: 'Duplicate User'
+      221 |         })
+    > 222 |         .expect(409);
+          |          ^
+      223 |     });
+      224 |
+      225 |     it('should handle foreign key violations', async () => {
+
+      at Object.<anonymous> (error-handling.e2e-spec.ts:222:10)
+      ----
+      at Test._assertStatus (../node_modules/supertest/lib/test.js:252:14)
+      at ../node_modules/supertest/lib/test.js:308:13
+      at Test._assertFunction (../node_modules/supertest/lib/test.js:285:13)
+      at Test.assert (../node_modules/supertest/lib/test.js:164:23)
+      at Server.localAssert (../node_modules/supertest/lib/test.js:120:14)
+
+  ΓùÅ Error Handling & Edge Cases E2E Tests ΓÇ║ ≡ƒöì Database Errors ΓÇ║ should handle foreign key violations
+
+    expect(received).toHaveProperty(path)
+
+    Expected path: "message"
+    Received path: []
+
+    Received value: {"error": {"code": "BAD_REQUEST", "message": ["enterpriseId must be a UUID"], "timestamp": "2026-01-07T18:17:10.088Z"}, "success": false}
+
+      234 |         .expect(400);
+      235 |
+    > 236 |       expect(response.body).toHaveProperty('message');
+          |                             ^
+      237 |     });
+      238 |   });
+      239 |
+
+      at Object.<anonymous> (error-handling.e2e-spec.ts:236:29)
+
+  ΓùÅ Error Handling & Edge Cases E2E Tests ΓÇ║ ≡ƒîÉ HTTP Errors ΓÇ║ should handle oversized requests
+
+    expected 413 "Payload Too Large", got 500 "Internal Server Error"
+
+      276 |           description: largeData
+      277 |         })
+    > 278 |         .expect(413); // Payload Too Large
+          |          ^
+      279 |     });
+      280 |   });
+      281 |
+
+      at Object.<anonymous> (error-handling.e2e-spec.ts:278:10)
+      ----
+      at Test._assertStatus (../node_modules/supertest/lib/test.js:252:14)
+      at ../node_modules/supertest/lib/test.js:308:13
+      at Test._assertFunction (../node_modules/supertest/lib/test.js:285:13)
+      at Test.assert (../node_modules/supertest/lib/test.js:164:23)
+      at Server.localAssert (../node_modules/supertest/lib/test.js:120:14)
+
+  ΓùÅ Error Handling & Edge Cases E2E Tests ΓÇ║ ≡ƒôè Edge Cases ΓÇ║ should handle special characters in search
+
+    TypeError: Request path contains unescaped characters
+
+      at Test.request (../node_modules/superagent/src/node/index.js:808:22)
+      at Test.request [as end] (../node_modules/superagent/src/node/index.js:986:8)
+      at Test.end (../node_modules/supertest/lib/test.js:118:11)
+      at end (../node_modules/superagent/src/request-base.js:285:12)
+      at Test.Object.<anonymous>.RequestBase.then (../node_modules/superagent/src/request-base.js:267:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       10 failed, 26 passed, 36 total
+Snapshots:   0 total
+Time:        20.261 s, estimated 32 s
+Ran all test suites matching /test\\error-handling.e2e-spec.ts/i.
