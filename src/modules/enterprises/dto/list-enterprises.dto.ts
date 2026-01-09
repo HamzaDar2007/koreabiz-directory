@@ -1,34 +1,37 @@
-import { IsOptional, IsString, IsUUID, IsArray, IsEnum, IsBoolean } from 'class-validator';
-import { PaginationDto } from '../../../common/dto/pagination.dto';
-import { EnterpriseStatus } from '../../../common/enums/enterprise-status.enum';
+import { IsOptional, IsString, IsBoolean, IsInt, Min, IsUUID } from 'class-validator';
+import { Type, Transform } from 'class-transformer';
 
-export class ListEnterprisesDto extends PaginationDto {
+export class ListEnterprisesDto {
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  page?: number = 1;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  limit?: number = 20;
+
   @IsOptional()
   @IsString()
   search?: string;
 
   @IsOptional()
   @IsUUID()
+  categoryId?: string;
+
+  @IsOptional()
+  @IsUUID()
   cityId?: string;
 
   @IsOptional()
-  @IsArray()
-  @IsUUID('4', { each: true })
-  categoryIds?: string[];
-
-  @IsOptional()
-  @IsEnum(EnterpriseStatus)
-  status?: EnterpriseStatus;
-
-  @IsOptional()
+  @Transform(({ value }) => value === 'true')
   @IsBoolean()
   verified?: boolean;
 
   @IsOptional()
   @IsString()
-  sortBy?: string;
-
-  @IsOptional()
-  @IsString()
-  sortOrder?: 'ASC' | 'DESC';
+  status?: string;
 }

@@ -1,7 +1,12 @@
-import { Controller, Get, Query, Param } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Query, Param, Body, UseGuards } from '@nestjs/common';
 import { Public } from '../../common/decorators/public.decorator';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { Roles } from '../../common/decorators/roles.decorator';
+import { UserRole } from '../../common/enums/user-role.enum';
 import { CitiesService } from './cities.service';
 import { ListCitiesDto } from './dto/list-cities.dto';
+import { CreateCityDto } from './dto/create-city.dto';
+import { UpdateCityDto } from './dto/update-city.dto';
 
 @Controller('cities')
 export class CitiesController {
@@ -30,9 +35,44 @@ export class CitiesController {
     return this.citiesService.findAll();
   }
 
-  @Get(':slug')
+  @Get(':id')
+  @Public()
+  async findOne(@Param('id') id: string) {
+    // Check if it's a valid UUID format
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+    if (uuidRegex.test(id)) {
+      return this.citiesService.findOne(id);
+    } else {
+      // Treat as slug
+      return this.citiesService.findBySlug(id);
+    }
+  }
+
+  @Get('slug/:slug')
   @Public()
   async findBySlug(@Param('slug') slug: string) {
     return this.citiesService.findBySlug(slug);
+  }
+
+  @Post()
+  @UseGuards(JwtAuthGuard)
+  @Roles(UserRole.ADMIN)
+  async create(@Body() dto: CreateCityDto) {
+    return this.citiesService.create(dto);
+  }
+
+  @Put(':id')
+  @UseGuards(JwtAuthGuard)
+  @Roles(UserRole.ADMIN)
+  async update(@Param('id') id: string, @Body() dto: UpdateCityDto) {
+    return this.citiesService.update(id, dto);
+  }
+
+  @Delete(':id')
+  @UseGuards(JwtAuthGuard)
+  @Roles(UserRole.ADMIN)
+  async remove(@Param('id') id: string) {
+    return this.citiesService.remove(id);
   }
 }

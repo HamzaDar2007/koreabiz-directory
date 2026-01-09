@@ -1,14 +1,14 @@
 {
   "_type": "export",
   "__export_format": 4,
-  "__export_date": "2024-01-01T00:00:00.000Z",
+  "__export_date": "2026-01-08T11:00:00.000Z",
   "__export_source": "insomnia.desktop.app:v2023.5.8",
   "resources": [
     {
       "_id": "req_group_auth",
       "_type": "request_group",
       "name": "🔐 Authentication",
-      "description": "Authentication endpoints",
+      "description": "Authentication endpoints - JWT-based auth with refresh tokens",
       "environment": {},
       "environmentPropertyOrder": null,
       "metaSortKey": -1000000000
@@ -18,12 +18,12 @@
       "_type": "request",
       "parentId": "req_group_auth",
       "name": "Register",
-      "description": "",
+      "description": "Register a new user account",
       "url": "{{ _.baseUrl }}/v1/auth/register",
       "method": "POST",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"Password123!\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"phoneNumber\": \"+82-10-1234-5678\"\n}"
+        "text": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"Password123!\",\n  \"displayName\": \"John Doe\"\n}"
       },
       "parameters": [],
       "headers": [
@@ -40,7 +40,7 @@
       "_type": "request",
       "parentId": "req_group_auth",
       "name": "Login",
-      "description": "",
+      "description": "Login with email and password",
       "url": "{{ _.baseUrl }}/v1/auth/login",
       "method": "POST",
       "body": {
@@ -62,7 +62,7 @@
       "_type": "request",
       "parentId": "req_group_auth",
       "name": "Refresh Token",
-      "description": "",
+      "description": "Get new access token using refresh token",
       "url": "{{ _.baseUrl }}/v1/auth/refresh",
       "method": "POST",
       "body": {
@@ -84,7 +84,7 @@
       "_type": "request",
       "parentId": "req_group_auth",
       "name": "Logout",
-      "description": "",
+      "description": "Logout and blacklist tokens",
       "url": "{{ _.baseUrl }}/v1/auth/logout",
       "method": "POST",
       "body": {
@@ -110,7 +110,7 @@
       "_type": "request",
       "parentId": "req_group_auth",
       "name": "Logout All",
-      "description": "",
+      "description": "Logout from all devices",
       "url": "{{ _.baseUrl }}/v1/auth/logout-all",
       "method": "POST",
       "body": {},
@@ -129,7 +129,7 @@
       "_type": "request",
       "parentId": "req_group_auth",
       "name": "Forgot Password",
-      "description": "",
+      "description": "Request password reset email",
       "url": "{{ _.baseUrl }}/v1/auth/forgot-password",
       "method": "POST",
       "body": {
@@ -151,12 +151,12 @@
       "_type": "request",
       "parentId": "req_group_auth",
       "name": "Reset Password",
-      "description": "",
+      "description": "Reset password with token",
       "url": "{{ _.baseUrl }}/v1/auth/reset-password",
       "method": "POST",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"token\": \"reset-token-here\",\n  \"password\": \"NewPassword123!\"\n}"
+        "text": "{\n  \"token\": \"reset-token-here\",\n  \"newPassword\": \"NewPassword123!\"\n}"
       },
       "parameters": [],
       "headers": [
@@ -173,7 +173,7 @@
       "_type": "request",
       "parentId": "req_group_auth",
       "name": "Resend Verification",
-      "description": "",
+      "description": "Resend email verification",
       "url": "{{ _.baseUrl }}/v1/auth/resend-verification",
       "method": "POST",
       "body": {
@@ -197,14 +197,14 @@
       "description": "User management endpoints",
       "environment": {},
       "environmentPropertyOrder": null,
-      "metaSortKey": -900000000
+      "metaSortKey": -950000000
     },
     {
-      "_id": "req_users_profile",
+      "_id": "req_users_me",
       "_type": "request",
       "parentId": "req_group_users",
-      "name": "Get Profile",
-      "description": "",
+      "name": "Get Current User",
+      "description": "Get current user profile",
       "url": "{{ _.baseUrl }}/v1/users/me",
       "method": "GET",
       "body": {},
@@ -216,19 +216,19 @@
         }
       ],
       "authentication": {},
-      "metaSortKey": -900000000
+      "metaSortKey": -950000000
     },
     {
-      "_id": "req_users_update_profile",
+      "_id": "req_users_update",
       "_type": "request",
       "parentId": "req_group_users",
       "name": "Update Profile",
-      "description": "",
+      "description": "Update current user profile",
       "url": "{{ _.baseUrl }}/v1/users/me",
       "method": "PUT",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"phoneNumber\": \"+82-10-1234-5678\"\n}"
+        "text": "{\n  \"displayName\": \"Updated Name\"\n}"
       },
       "parameters": [],
       "headers": [
@@ -242,7 +242,7 @@
         }
       ],
       "authentication": {},
-      "metaSortKey": -899999999
+      "metaSortKey": -949999999
     },
     {
       "_id": "req_group_enterprises",
@@ -258,8 +258,8 @@
       "_type": "request",
       "parentId": "req_group_enterprises",
       "name": "List Enterprises",
-      "description": "",
-      "url": "{{ _.baseUrl }}/v1/enterprises?page=1&limit=20",
+      "description": "Get paginated list of enterprises",
+      "url": "{{ _.baseUrl }}/v1/enterprises",
       "method": "GET",
       "body": {},
       "parameters": [
@@ -272,15 +272,23 @@
           "value": "20"
         },
         {
-          "name": "category",
+          "name": "search",
           "value": ""
         },
         {
-          "name": "city",
+          "name": "categoryId",
+          "value": ""
+        },
+        {
+          "name": "cityId",
           "value": ""
         },
         {
           "name": "verified",
+          "value": ""
+        },
+        {
+          "name": "status",
           "value": ""
         }
       ],
@@ -293,7 +301,7 @@
       "_type": "request",
       "parentId": "req_group_enterprises",
       "name": "Get Enterprise",
-      "description": "",
+      "description": "Get enterprise by ID or slug",
       "url": "{{ _.baseUrl }}/v1/enterprises/{{ _.enterpriseId }}",
       "method": "GET",
       "body": {},
@@ -307,12 +315,12 @@
       "_type": "request",
       "parentId": "req_group_enterprises",
       "name": "Create Enterprise",
-      "description": "",
+      "description": "Create a new enterprise",
       "url": "{{ _.baseUrl }}/v1/enterprises",
       "method": "POST",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"name\": \"Test Enterprise\",\n  \"description\": \"A test enterprise\",\n  \"categoryId\": \"category-id\",\n  \"cityId\": \"city-id\",\n  \"address\": \"123 Test Street\",\n  \"phoneNumber\": \"+82-2-1234-5678\",\n  \"email\": \"contact@testenterprise.com\",\n  \"website\": \"https://testenterprise.com\"\n}"
+        "text": "{\n  \"name\": \"Test Enterprise\",\n  \"legalName\": \"Test Enterprise LLC\",\n  \"shortDescription\": \"A test enterprise\",\n  \"description\": \"Detailed description of the test enterprise\",\n  \"cityId\": \"{{ _.cityId }}\",\n  \"priceRange\": 3,\n  \"foundedYear\": 2020,\n  \"employeeRange\": \"10-50\",\n  \"categoryIds\": [\"{{ _.categoryId }}\"]\n}"
       },
       "parameters": [],
       "headers": [
@@ -333,12 +341,12 @@
       "_type": "request",
       "parentId": "req_group_enterprises",
       "name": "Update Enterprise",
-      "description": "",
+      "description": "Update an existing enterprise",
       "url": "{{ _.baseUrl }}/v1/enterprises/{{ _.enterpriseId }}",
       "method": "PUT",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"name\": \"Updated Enterprise\",\n  \"description\": \"Updated description\",\n  \"phoneNumber\": \"+82-2-9876-5432\"\n}"
+        "text": "{\n  \"name\": \"Updated Enterprise\",\n  \"description\": \"Updated description\",\n  \"priceRange\": 4\n}"
       },
       "parameters": [],
       "headers": [
@@ -359,7 +367,7 @@
       "_type": "request",
       "parentId": "req_group_enterprises",
       "name": "Get Mobile Data",
-      "description": "",
+      "description": "Get mobile-optimized enterprise data",
       "url": "{{ _.baseUrl }}/v1/enterprises/{{ _.enterpriseId }}/mobile",
       "method": "GET",
       "body": {},
@@ -369,36 +377,10 @@
       "metaSortKey": -799999996
     },
     {
-      "_id": "req_enterprises_mobile_upload",
-      "_type": "request",
-      "parentId": "req_group_enterprises",
-      "name": "Upload Mobile Image",
-      "description": "",
-      "url": "{{ _.baseUrl }}/v1/enterprises/{{ _.enterpriseId }}/mobile/images",
-      "method": "POST",
-      "body": {
-        "mimeType": "application/json",
-        "text": "{\n  \"imageUrl\": \"https://example.com/image.jpg\",\n  \"alt\": \"Mobile image\"\n}"
-      },
-      "parameters": [],
-      "headers": [
-        {
-          "name": "Content-Type",
-          "value": "application/json"
-        },
-        {
-          "name": "Authorization",
-          "value": "Bearer {{ _.accessToken }}"
-        }
-      ],
-      "authentication": {},
-      "metaSortKey": -799999995
-    },
-    {
       "_id": "req_group_search",
       "_type": "request_group",
       "name": "🔍 Search",
-      "description": "Search endpoints",
+      "description": "Search endpoints with MeiliSearch integration",
       "environment": {},
       "environmentPropertyOrder": null,
       "metaSortKey": -700000000
@@ -408,7 +390,7 @@
       "_type": "request",
       "parentId": "req_group_search",
       "name": "Search Enterprises",
-      "description": "",
+      "description": "Search enterprises with filters",
       "url": "{{ _.baseUrl }}/v1/search/enterprises",
       "method": "GET",
       "body": {},
@@ -416,6 +398,10 @@
         {
           "name": "q",
           "value": "restaurant"
+        },
+        {
+          "name": "query",
+          "value": "korean food"
         },
         {
           "name": "page",
@@ -426,12 +412,56 @@
           "value": "20"
         },
         {
+          "name": "categoryId",
+          "value": ""
+        },
+        {
           "name": "category",
+          "value": ""
+        },
+        {
+          "name": "cityId",
           "value": ""
         },
         {
           "name": "city",
           "value": ""
+        },
+        {
+          "name": "priceRange",
+          "value": ""
+        },
+        {
+          "name": "minPrice",
+          "value": ""
+        },
+        {
+          "name": "maxPrice",
+          "value": ""
+        },
+        {
+          "name": "verified",
+          "value": ""
+        },
+        {
+          "name": "lat",
+          "value": "37.5665"
+        },
+        {
+          "name": "lng",
+          "value": "126.9780"
+        },
+        {
+          "name": "radius",
+          "value": "10"
+        },
+        {
+          "name": "sortBy",
+          "value": "rating"
+        },
+        {
+          "name": "sortOrder",
+          "value": "DESC"
         }
       ],
       "headers": [],
@@ -443,7 +473,7 @@
       "_type": "request",
       "parentId": "req_group_search",
       "name": "Get Popular",
-      "description": "",
+      "description": "Get popular enterprises",
       "url": "{{ _.baseUrl }}/v1/search/popular",
       "method": "GET",
       "body": {},
@@ -457,7 +487,7 @@
       "_type": "request",
       "parentId": "req_group_search",
       "name": "Get Featured",
-      "description": "",
+      "description": "Get featured enterprises",
       "url": "{{ _.baseUrl }}/v1/search/featured",
       "method": "GET",
       "body": {},
@@ -480,8 +510,8 @@
       "_type": "request",
       "parentId": "req_group_categories",
       "name": "List Categories",
-      "description": "",
-      "url": "{{ _.baseUrl }}/v1/categories?page=1&limit=20",
+      "description": "Get paginated list of categories",
+      "url": "{{ _.baseUrl }}/v1/categories",
       "method": "GET",
       "body": {},
       "parameters": [
@@ -492,6 +522,10 @@
         {
           "name": "limit",
           "value": "20"
+        },
+        {
+          "name": "search",
+          "value": ""
         }
       ],
       "headers": [],
@@ -503,7 +537,7 @@
       "_type": "request",
       "parentId": "req_group_categories",
       "name": "Get All Categories",
-      "description": "",
+      "description": "Get all categories without pagination",
       "url": "{{ _.baseUrl }}/v1/categories/all",
       "method": "GET",
       "body": {},
@@ -517,7 +551,7 @@
       "_type": "request",
       "parentId": "req_group_categories",
       "name": "Get Category by Slug",
-      "description": "",
+      "description": "Get category by slug or ID",
       "url": "{{ _.baseUrl }}/v1/categories/restaurants",
       "method": "GET",
       "body": {},
@@ -540,8 +574,8 @@
       "_type": "request",
       "parentId": "req_group_cities",
       "name": "List Cities",
-      "description": "",
-      "url": "{{ _.baseUrl }}/v1/cities?page=1&limit=20",
+      "description": "Get paginated list of cities",
+      "url": "{{ _.baseUrl }}/v1/cities",
       "method": "GET",
       "body": {},
       "parameters": [
@@ -552,6 +586,10 @@
         {
           "name": "limit",
           "value": "20"
+        },
+        {
+          "name": "search",
+          "value": ""
         }
       ],
       "headers": [],
@@ -563,7 +601,7 @@
       "_type": "request",
       "parentId": "req_group_cities",
       "name": "Get All Cities",
-      "description": "",
+      "description": "Get all cities without pagination",
       "url": "{{ _.baseUrl }}/v1/cities/all",
       "method": "GET",
       "body": {},
@@ -577,7 +615,7 @@
       "_type": "request",
       "parentId": "req_group_cities",
       "name": "Get City by Slug",
-      "description": "",
+      "description": "Get city by slug or ID",
       "url": "{{ _.baseUrl }}/v1/cities/seoul",
       "method": "GET",
       "body": {},
@@ -590,7 +628,7 @@
       "_id": "req_group_reviews",
       "_type": "request_group",
       "name": "⭐ Reviews",
-      "description": "Review endpoints",
+      "description": "Review endpoints - rating system (1-5)",
       "environment": {},
       "environmentPropertyOrder": null,
       "metaSortKey": -400000000
@@ -600,12 +638,12 @@
       "_type": "request",
       "parentId": "req_group_reviews",
       "name": "Create Review",
-      "description": "",
+      "description": "Create a new review",
       "url": "{{ _.baseUrl }}/v1/reviews",
       "method": "POST",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"enterpriseId\": \"{{ _.enterpriseId }}\",\n  \"rating\": 5,\n  \"comment\": \"Great service and food!\",\n  \"visitDate\": \"2024-01-01\"\n}"
+        "text": "{\n  \"enterpriseId\": \"{{ _.enterpriseId }}\",\n  \"rating\": 5,\n  \"comment\": \"Great service and food!\",\n  \"authorName\": \"John Doe\"\n}"
       },
       "parameters": [],
       "headers": [
@@ -626,8 +664,8 @@
       "_type": "request",
       "parentId": "req_group_reviews",
       "name": "List Reviews",
-      "description": "",
-      "url": "{{ _.baseUrl }}/v1/reviews?page=1&limit=20",
+      "description": "Get paginated list of reviews",
+      "url": "{{ _.baseUrl }}/v1/reviews",
       "method": "GET",
       "body": {},
       "parameters": [
@@ -638,6 +676,18 @@
         {
           "name": "limit",
           "value": "20"
+        },
+        {
+          "name": "enterpriseId",
+          "value": ""
+        },
+        {
+          "name": "status",
+          "value": "PUBLISHED"
+        },
+        {
+          "name": "rating",
+          "value": ""
         }
       ],
       "headers": [],
@@ -649,8 +699,8 @@
       "_type": "request",
       "parentId": "req_group_reviews",
       "name": "List Reviews by Enterprise",
-      "description": "",
-      "url": "{{ _.baseUrl }}/v1/reviews/enterprise/{{ _.enterpriseId }}?page=1&limit=20",
+      "description": "Get reviews for a specific enterprise",
+      "url": "{{ _.baseUrl }}/v1/reviews/enterprise/{{ _.enterpriseId }}",
       "method": "GET",
       "body": {},
       "parameters": [
@@ -670,8 +720,8 @@
     {
       "_id": "req_group_favorites",
       "_type": "request_group",
-      "name": "❤️ Favorites",
-      "description": "Favorite endpoints",
+      "name": "⭐ Favorites",
+      "description": "User favorites/bookmarks endpoints",
       "environment": {},
       "environmentPropertyOrder": null,
       "metaSortKey": -300000000
@@ -681,7 +731,7 @@
       "_type": "request",
       "parentId": "req_group_favorites",
       "name": "Add Favorite",
-      "description": "",
+      "description": "Add enterprise to favorites",
       "url": "{{ _.baseUrl }}/v1/favorites",
       "method": "POST",
       "body": {
@@ -703,31 +753,12 @@
       "metaSortKey": -300000000
     },
     {
-      "_id": "req_favorites_remove",
-      "_type": "request",
-      "parentId": "req_group_favorites",
-      "name": "Remove Favorite",
-      "description": "",
-      "url": "{{ _.baseUrl }}/v1/favorites/{{ _.enterpriseId }}",
-      "method": "DELETE",
-      "body": {},
-      "parameters": [],
-      "headers": [
-        {
-          "name": "Authorization",
-          "value": "Bearer {{ _.accessToken }}"
-        }
-      ],
-      "authentication": {},
-      "metaSortKey": -299999999
-    },
-    {
       "_id": "req_favorites_list",
       "_type": "request",
       "parentId": "req_group_favorites",
       "name": "List Favorites",
-      "description": "",
-      "url": "{{ _.baseUrl }}/v1/favorites?page=1&limit=20",
+      "description": "Get user's favorites",
+      "url": "{{ _.baseUrl }}/v1/favorites",
       "method": "GET",
       "body": {},
       "parameters": [
@@ -747,13 +778,32 @@
         }
       ],
       "authentication": {},
+      "metaSortKey": -299999999
+    },
+    {
+      "_id": "req_favorites_remove",
+      "_type": "request",
+      "parentId": "req_group_favorites",
+      "name": "Remove Favorite",
+      "description": "Remove enterprise from favorites",
+      "url": "{{ _.baseUrl }}/v1/favorites/{{ _.enterpriseId }}",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
       "metaSortKey": -299999998
     },
     {
       "_id": "req_group_claims",
       "_type": "request_group",
       "name": "📋 Claims",
-      "description": "Claim endpoints",
+      "description": "Ownership claim endpoints",
       "environment": {},
       "environmentPropertyOrder": null,
       "metaSortKey": -200000000
@@ -763,12 +813,12 @@
       "_type": "request",
       "parentId": "req_group_claims",
       "name": "Submit Claim",
-      "description": "",
+      "description": "Submit ownership claim",
       "url": "{{ _.baseUrl }}/v1/claims",
       "method": "POST",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"enterpriseId\": \"{{ _.enterpriseId }}\",\n  \"reason\": \"I am the owner of this business\",\n  \"evidence\": \"Business registration documents attached\"\n}"
+        "text": "{\n  \"enterpriseId\": \"{{ _.enterpriseId }}\",\n  \"requesterName\": \"John Doe\",\n  \"requesterEmail\": \"john@example.com\",\n  \"requesterPhone\": \"+82-10-1234-5678\",\n  \"position\": \"Owner\",\n  \"proofOfOwnership\": \"Business registration documents attached\"\n}"
       },
       "parameters": [],
       "headers": [
@@ -789,8 +839,8 @@
       "_type": "request",
       "parentId": "req_group_claims",
       "name": "List Claims",
-      "description": "",
-      "url": "{{ _.baseUrl }}/v1/claims?page=1&limit=20",
+      "description": "Get user's claims",
+      "url": "{{ _.baseUrl }}/v1/claims",
       "method": "GET",
       "body": {},
       "parameters": [
@@ -801,6 +851,14 @@
         {
           "name": "limit",
           "value": "20"
+        },
+        {
+          "name": "enterpriseId",
+          "value": ""
+        },
+        {
+          "name": "status",
+          "value": ""
         }
       ],
       "headers": [
@@ -816,7 +874,7 @@
       "_id": "req_group_media",
       "_type": "request_group",
       "name": "📷 Media",
-      "description": "Media management endpoints",
+      "description": "Media management endpoints - S3 integration",
       "environment": {},
       "environmentPropertyOrder": null,
       "metaSortKey": -100000000
@@ -826,12 +884,12 @@
       "_type": "request",
       "parentId": "req_group_media",
       "name": "Create Presigned URL",
-      "description": "",
+      "description": "Get presigned URL for S3 upload",
       "url": "{{ _.baseUrl }}/v1/media/enterprises/{{ _.enterpriseId }}/presigned",
       "method": "POST",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"fileName\": \"image.jpg\",\n  \"fileType\": \"image/jpeg\",\n  \"fileSize\": 1024000\n}"
+        "text": "{\n  \"fileName\": \"image.jpg\",\n  \"fileType\": \"image/jpeg\",\n  \"contentType\": \"image/jpeg\",\n  \"fileSize\": 1024000,\n  \"mediaType\": \"GALLERY\"\n}"
       },
       "parameters": [],
       "headers": [
@@ -852,12 +910,12 @@
       "_type": "request",
       "parentId": "req_group_media",
       "name": "Register Media",
-      "description": "",
+      "description": "Register uploaded media",
       "url": "{{ _.baseUrl }}/v1/media/enterprises/{{ _.enterpriseId }}/register",
       "method": "POST",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"fileName\": \"image.jpg\",\n  \"fileUrl\": \"https://s3.amazonaws.com/bucket/image.jpg\",\n  \"fileType\": \"image/jpeg\",\n  \"fileSize\": 1024000,\n  \"alt\": \"Enterprise image\"\n}"
+        "text": "{\n  \"kind\": \"GALLERY\",\n  \"mediaType\": \"GALLERY\",\n  \"storageKey\": \"enterprises/123/gallery/image.jpg\",\n  \"key\": \"enterprises/123/gallery/image.jpg\",\n  \"contentType\": \"image/jpeg\",\n  \"fileSize\": 1024000,\n  \"width\": 1920,\n  \"height\": 1080,\n  \"sortOrder\": 0\n}"
       },
       "parameters": [],
       "headers": [
@@ -878,7 +936,7 @@
       "_type": "request",
       "parentId": "req_group_media",
       "name": "Get Enterprise Media",
-      "description": "",
+      "description": "Get all media for an enterprise",
       "url": "{{ _.baseUrl }}/v1/media/enterprises/{{ _.enterpriseId }}",
       "method": "GET",
       "body": {},
@@ -897,7 +955,7 @@
       "_type": "request",
       "parentId": "req_group_media",
       "name": "Delete Media",
-      "description": "",
+      "description": "Delete media file",
       "url": "{{ _.baseUrl }}/v1/media/enterprises/{{ _.enterpriseId }}/{{ _.mediaId }}",
       "method": "DELETE",
       "body": {},
@@ -915,7 +973,7 @@
       "_id": "req_group_subscriptions",
       "_type": "request_group",
       "name": "💳 Subscriptions",
-      "description": "Subscription endpoints",
+      "description": "Subscription endpoints - FREE/BASIC/PRO/ENTERPRISE tiers",
       "environment": {},
       "environmentPropertyOrder": null,
       "metaSortKey": -50000000
@@ -925,7 +983,7 @@
       "_type": "request",
       "parentId": "req_group_subscriptions",
       "name": "Get All Plans",
-      "description": "",
+      "description": "Get all subscription plans",
       "url": "{{ _.baseUrl }}/v1/subscriptions/plans",
       "method": "GET",
       "body": {},
@@ -935,16 +993,23 @@
       "metaSortKey": -50000000
     },
     {
-      "_id": "req_subscriptions_status",
+      "_id": "req_subscriptions_enterprise_change",
       "_type": "request",
       "parentId": "req_group_subscriptions",
-      "name": "Get Global Status",
-      "description": "",
-      "url": "{{ _.baseUrl }}/v1/subscriptions/status",
-      "method": "GET",
-      "body": {},
+      "name": "Change Enterprise Plan",
+      "description": "Change enterprise subscription plan",
+      "url": "{{ _.baseUrl }}/v1/subscriptions/enterprise/{{ _.enterpriseId }}/change-plan",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"tier\": \"PRO\",\n  \"planId\": \"{{ _.planId }}\"\n}"
+      },
       "parameters": [],
       "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
         {
           "name": "Authorization",
           "value": "Bearer {{ _.accessToken }}"
@@ -954,89 +1019,11 @@
       "metaSortKey": -49999999
     },
     {
-      "_id": "req_subscriptions_checkout",
-      "_type": "request",
-      "parentId": "req_group_subscriptions",
-      "name": "Checkout",
-      "description": "",
-      "url": "{{ _.baseUrl }}/v1/subscriptions/checkout",
-      "method": "POST",
-      "body": {
-        "mimeType": "application/json",
-        "text": "{\n  \"planId\": \"premium\",\n  \"billingCycle\": \"monthly\"\n}"
-      },
-      "parameters": [],
-      "headers": [
-        {
-          "name": "Content-Type",
-          "value": "application/json"
-        },
-        {
-          "name": "Authorization",
-          "value": "Bearer {{ _.accessToken }}"
-        }
-      ],
-      "authentication": {},
-      "metaSortKey": -49999998
-    },
-    {
-      "_id": "req_subscriptions_change_plan",
-      "_type": "request",
-      "parentId": "req_group_subscriptions",
-      "name": "Change Plan (Global)",
-      "description": "",
-      "url": "{{ _.baseUrl }}/v1/subscriptions/change-plan",
-      "method": "POST",
-      "body": {
-        "mimeType": "application/json",
-        "text": "{\n  \"planId\": \"premium\"\n}"
-      },
-      "parameters": [],
-      "headers": [
-        {
-          "name": "Content-Type",
-          "value": "application/json"
-        },
-        {
-          "name": "Authorization",
-          "value": "Bearer {{ _.accessToken }}"
-        }
-      ],
-      "authentication": {},
-      "metaSortKey": -49999997
-    },
-    {
-      "_id": "req_subscriptions_enterprise_change",
-      "_type": "request",
-      "parentId": "req_group_subscriptions",
-      "name": "Change Enterprise Plan",
-      "description": "",
-      "url": "{{ _.baseUrl }}/v1/subscriptions/enterprise/{{ _.enterpriseId }}/change-plan",
-      "method": "POST",
-      "body": {
-        "mimeType": "application/json",
-        "text": "{\n  \"planId\": \"premium\"\n}"
-      },
-      "parameters": [],
-      "headers": [
-        {
-          "name": "Content-Type",
-          "value": "application/json"
-        },
-        {
-          "name": "Authorization",
-          "value": "Bearer {{ _.accessToken }}"
-        }
-      ],
-      "authentication": {},
-      "metaSortKey": -49999996
-    },
-    {
       "_id": "req_subscriptions_enterprise_status",
       "_type": "request",
       "parentId": "req_group_subscriptions",
       "name": "Get Enterprise Status",
-      "description": "",
+      "description": "Get enterprise subscription status",
       "url": "{{ _.baseUrl }}/v1/subscriptions/enterprise/{{ _.enterpriseId }}/status",
       "method": "GET",
       "body": {},
@@ -1048,14 +1035,14 @@
         }
       ],
       "authentication": {},
-      "metaSortKey": -49999995
+      "metaSortKey": -49999998
     },
     {
       "_id": "req_subscriptions_feature_access",
       "_type": "request",
       "parentId": "req_group_subscriptions",
       "name": "Check Feature Access",
-      "description": "",
+      "description": "Check if feature is available for enterprise",
       "url": "{{ _.baseUrl }}/v1/subscriptions/enterprise/{{ _.enterpriseId }}/feature/premium_analytics",
       "method": "GET",
       "body": {},
@@ -1067,7 +1054,471 @@
         }
       ],
       "authentication": {},
-      "metaSortKey": -49999994
+      "metaSortKey": -49999997
+    },
+    {
+      "_id": "req_group_analytics",
+      "_type": "request_group",
+      "name": "📊 Analytics",
+      "description": "Analytics endpoints - page views, impressions, clicks",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -25000000
+    },
+    {
+      "_id": "req_analytics_record",
+      "_type": "request",
+      "parentId": "req_group_analytics",
+      "name": "Record Event",
+      "description": "Record analytics event (page_view, search_impression, cta_click)",
+      "url": "{{ _.baseUrl }}/v1/analytics/events",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"enterpriseId\": \"{{ _.enterpriseId }}\",\n  \"eventType\": \"page_view\",\n  \"metadata\": {\"source\": \"web\"}\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -25000000
+    },
+    {
+      "_id": "req_analytics_get",
+      "_type": "request",
+      "parentId": "req_group_analytics",
+      "name": "Get Analytics",
+      "description": "Get analytics data for enterprise",
+      "url": "{{ _.baseUrl }}/v1/analytics/enterprise/{{ _.enterpriseId }}",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "startDate",
+          "value": "2024-01-01"
+        },
+        {
+          "name": "endDate",
+          "value": "2024-01-31"
+        },
+        {
+          "name": "page",
+          "value": "1"
+        },
+        {
+          "name": "limit",
+          "value": "30"
+        }
+      ],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -24999999
+    },
+    {
+      "_id": "req_analytics_dashboard",
+      "_type": "request",
+      "parentId": "req_group_analytics",
+      "name": "Get Dashboard Stats",
+      "description": "Get 30-day dashboard statistics",
+      "url": "{{ _.baseUrl }}/v1/analytics/enterprise/{{ _.enterpriseId }}/dashboard",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -24999998
+    },
+    {
+      "_id": "req_group_admin",
+      "_type": "request_group",
+      "name": "👑 Admin",
+      "description": "Admin-only endpoints (requires ADMIN role)",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -15000000
+    },
+    {
+      "_id": "req_admin_users_list",
+      "_type": "request",
+      "parentId": "req_group_admin",
+      "name": "List All Users",
+      "description": "Get all users (admin only)",
+      "url": "{{ _.baseUrl }}/v1/admin/users",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "page",
+          "value": "1"
+        },
+        {
+          "name": "limit",
+          "value": "20"
+        }
+      ],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -15000000
+    },
+    {
+      "_id": "req_admin_users_get",
+      "_type": "request",
+      "parentId": "req_group_admin",
+      "name": "Get User by ID",
+      "description": "Get user details (admin only)",
+      "url": "{{ _.baseUrl }}/v1/admin/users/{{ _.userId }}",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -14999999
+    },
+    {
+      "_id": "req_admin_users_update",
+      "_type": "request",
+      "parentId": "req_group_admin",
+      "name": "Update User",
+      "description": "Update user (admin only)",
+      "url": "{{ _.baseUrl }}/v1/admin/users/{{ _.userId }}",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"displayName\": \"Updated Name\",\n  \"role\": \"ADMIN\",\n  \"isActive\": true,\n  \"emailVerified\": true\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -14999998
+    },
+    {
+      "_id": "req_admin_enterprises_list",
+      "_type": "request",
+      "parentId": "req_group_admin",
+      "name": "List All Enterprises",
+      "description": "Get all enterprises (admin only)",
+      "url": "{{ _.baseUrl }}/v1/admin/enterprises",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "page",
+          "value": "1"
+        },
+        {
+          "name": "limit",
+          "value": "20"
+        }
+      ],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -14999997
+    },
+    {
+      "_id": "req_admin_enterprises_create",
+      "_type": "request",
+      "parentId": "req_group_admin",
+      "name": "Create Enterprise (Admin)",
+      "description": "Create enterprise as admin",
+      "url": "{{ _.baseUrl }}/v1/admin/enterprises",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Admin Created Enterprise\",\n  \"legalName\": \"Admin Enterprise LLC\",\n  \"shortDescription\": \"Created by admin\",\n  \"description\": \"Detailed description\",\n  \"cityId\": \"{{ _.cityId }}\",\n  \"categoryIds\": [\"{{ _.categoryId }}\"]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -14999996
+    },
+    {
+      "_id": "req_admin_enterprises_update",
+      "_type": "request",
+      "parentId": "req_group_admin",
+      "name": "Update Enterprise (Admin)",
+      "description": "Update enterprise as admin",
+      "url": "{{ _.baseUrl }}/v1/admin/enterprises/{{ _.enterpriseId }}",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Updated by Admin\",\n  \"verified\": true\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -14999995
+    },
+    {
+      "_id": "req_admin_enterprises_verify",
+      "_type": "request",
+      "parentId": "req_group_admin",
+      "name": "Verify Enterprise",
+      "description": "Verify enterprise (admin only)",
+      "url": "{{ _.baseUrl }}/v1/admin/enterprises/{{ _.enterpriseId }}/verify",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"verified\": true,\n  \"notes\": \"Verified after document review\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -14999994
+    },
+    {
+      "_id": "req_admin_enterprises_staff",
+      "_type": "request",
+      "parentId": "req_group_admin",
+      "name": "Assign Staff",
+      "description": "Assign staff to enterprise (admin only)",
+      "url": "{{ _.baseUrl }}/v1/admin/enterprises/{{ _.enterpriseId }}/staff",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"userId\": \"{{ _.userId }}\",\n  \"role\": \"MANAGER\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -14999993
+    },
+    {
+      "_id": "req_admin_reviews_list",
+      "_type": "request",
+      "parentId": "req_group_admin",
+      "name": "List All Reviews",
+      "description": "Get all reviews (admin only)",
+      "url": "{{ _.baseUrl }}/v1/admin/reviews",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "page",
+          "value": "1"
+        },
+        {
+          "name": "limit",
+          "value": "20"
+        },
+        {
+          "name": "status",
+          "value": ""
+        }
+      ],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -14999992
+    },
+    {
+      "_id": "req_admin_reviews_moderate",
+      "_type": "request",
+      "parentId": "req_group_admin",
+      "name": "Moderate Review",
+      "description": "Moderate review (admin only)",
+      "url": "{{ _.baseUrl }}/v1/admin/reviews/{{ _.reviewId }}/moderate",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"status\": \"PUBLISHED\",\n  \"moderationNotes\": \"Approved after review\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -14999991
+    },
+    {
+      "_id": "req_admin_claims_list",
+      "_type": "request",
+      "parentId": "req_group_admin",
+      "name": "List All Claims",
+      "description": "Get all claims (admin only)",
+      "url": "{{ _.baseUrl }}/v1/admin/claims",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "page",
+          "value": "1"
+        },
+        {
+          "name": "limit",
+          "value": "20"
+        }
+      ],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -14999990
+    },
+    {
+      "_id": "req_admin_claims_review",
+      "_type": "request",
+      "parentId": "req_group_admin",
+      "name": "Review Claim",
+      "description": "Review ownership claim (admin only)",
+      "url": "{{ _.baseUrl }}/v1/admin/claims/{{ _.claimId }}/review",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"status\": \"APPROVED\",\n  \"reviewNotes\": \"Ownership verified\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -14999989
+    },
+    {
+      "_id": "req_admin_audit_logs",
+      "_type": "request",
+      "parentId": "req_group_admin",
+      "name": "List Audit Logs",
+      "description": "Get audit logs (admin only)",
+      "url": "{{ _.baseUrl }}/v1/audit/logs",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "page",
+          "value": "1"
+        },
+        {
+          "name": "limit",
+          "value": "50"
+        },
+        {
+          "name": "entityType",
+          "value": ""
+        },
+        {
+          "name": "entityId",
+          "value": ""
+        },
+        {
+          "name": "actorUserId",
+          "value": ""
+        },
+        {
+          "name": "action",
+          "value": ""
+        },
+        {
+          "name": "startDate",
+          "value": ""
+        },
+        {
+          "name": "endDate",
+          "value": ""
+        }
+      ],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -14999988
     },
     {
       "_id": "req_group_health",
@@ -1083,7 +1534,7 @@
       "_type": "request",
       "parentId": "req_group_health",
       "name": "Health Check",
-      "description": "",
+      "description": "Overall health status",
       "url": "{{ _.baseUrl }}/v1/health",
       "method": "GET",
       "body": {},
@@ -1097,7 +1548,7 @@
       "_type": "request",
       "parentId": "req_group_health",
       "name": "Readiness Check",
-      "description": "",
+      "description": "Kubernetes readiness probe",
       "url": "{{ _.baseUrl }}/v1/health/ready",
       "method": "GET",
       "body": {},
@@ -1111,7 +1562,7 @@
       "_type": "request",
       "parentId": "req_group_health",
       "name": "Liveness Check",
-      "description": "",
+      "description": "Kubernetes liveness probe",
       "url": "{{ _.baseUrl }}/v1/health/live",
       "method": "GET",
       "body": {},
@@ -1129,10 +1580,28 @@
         "accessToken": "",
         "refreshToken": "",
         "enterpriseId": "",
-        "mediaId": ""
+        "categoryId": "",
+        "cityId": "",
+        "planId": "",
+        "mediaId": "",
+        "userId": "",
+        "reviewId": "",
+        "claimId": ""
       },
       "dataPropertyOrder": {
-        "&": ["baseUrl", "accessToken", "refreshToken", "enterpriseId", "mediaId"]
+        "&": [
+          "baseUrl",
+          "accessToken",
+          "refreshToken",
+          "enterpriseId",
+          "categoryId",
+          "cityId",
+          "planId",
+          "mediaId",
+          "userId",
+          "reviewId",
+          "claimId"
+        ]
       },
       "color": null,
       "isPrivate": false,

@@ -1,7 +1,9 @@
-import { Controller, Post, Get, Body, Query, UseGuards, Req, Param } from '@nestjs/common';
+import { Controller, Post, Get, Delete, Body, Query, UseGuards, Req, Param } from '@nestjs/common';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { EnterpriseAccessGuard } from '../../common/guards/enterprise-access.guard';
 import { Public } from '../../common/decorators/public.decorator';
+import { Roles } from '../../common/decorators/roles.decorator';
+import { UserRole } from '../../common/enums/user-role.enum';
 import { AnalyticsService } from './analytics.service';
 import { RecordEventDto } from './dto/record-event.dto';
 import { GetAnalyticsDto } from './dto/get-analytics.dto';
@@ -30,5 +32,12 @@ export class AnalyticsController {
   @UseGuards(JwtAuthGuard, EnterpriseAccessGuard)
   async getDashboardStats(@Param('enterpriseId') enterpriseId: string) {
     return this.analyticsService.getDashboardStats(enterpriseId);
+  }
+
+  @Delete('enterprise/:enterpriseId')
+  @UseGuards(JwtAuthGuard)
+  @Roles(UserRole.ADMIN)
+  async clearAnalytics(@Param('enterpriseId') enterpriseId: string) {
+    return this.analyticsService.clearAnalytics(enterpriseId);
   }
 }

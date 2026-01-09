@@ -523,7 +523,7 @@ describe('KoreaBiz Directory - Complete Backend E2E Tests', () => {
       await request(app.getHttpServer())
         .post('/v1/analytics/events')
         .send({
-          eventType: 'enterprise_view',
+          eventType: 'page_view',
           enterpriseId: enterpriseId
         })
         .expect(201);

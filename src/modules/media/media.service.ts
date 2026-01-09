@@ -72,7 +72,7 @@ export class MediaService {
   async registerMedia(dto: RegisterMediaDto, enterpriseId: string) {
     // Validate file size (10MB limit)
     const MAX_FILE_SIZE = 10 * 1024 * 1024;
-    if (dto.fileSize > MAX_FILE_SIZE) {
+    if (dto.fileSize && dto.fileSize > MAX_FILE_SIZE) {
       throw new BadRequestException(`File size exceeds limit of 10MB`);
     }
 

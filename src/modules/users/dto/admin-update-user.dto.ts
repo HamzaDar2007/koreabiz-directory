@@ -1,4 +1,5 @@
 import { IsString, IsOptional, IsEnum, IsBoolean } from 'class-validator';
+import { UserRole } from '../../../common/enums/user-role.enum';
 
 export class AdminUpdateUserDto {
   @IsOptional()
@@ -6,8 +7,8 @@ export class AdminUpdateUserDto {
   displayName?: string;
 
   @IsOptional()
-  @IsEnum(['ADMIN', 'OWNER', 'STAFF', 'USER'])
-  role?: string;
+  @IsEnum(UserRole)
+  role?: UserRole;
 
   @IsOptional()
   @IsBoolean()

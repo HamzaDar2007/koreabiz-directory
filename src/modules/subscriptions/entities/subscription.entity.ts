@@ -38,7 +38,7 @@ export class Subscription {
   updatedAt: Date;
 
   // Relations
-  @OneToOne(() => Enterprise, enterprise => enterprise.subscriptions, { onDelete: 'CASCADE' })
+  @OneToOne(() => Enterprise, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'enterprise_id' })
   enterprise: Enterprise;
 }

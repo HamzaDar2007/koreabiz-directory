@@ -59,4 +59,26 @@ export class AuditService {
       .take(dto.limit)
       .getManyAndCount();
   }
+
+  async findOne(id: string) {
+    return this.auditRepository.findOne({ where: { id } });
+  }
+
+  async remove(id: string) {
+    await this.auditRepository.delete(id);
+    return { success: true };
+  }
+
+  async clearOldLogs(days: number = 90) {
+    const cutoffDate = new Date();
+    cutoffDate.setDate(cutoffDate.getDate() - days);
+    
+    const result = await this.auditRepository
+      .createQueryBuilder()
+      .delete()
+      .where('createdAt < :cutoffDate', { cutoffDate })
+      .execute();
+    
+    return { deleted: result.affected || 0 };
+  }
 }

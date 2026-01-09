@@ -2,6 +2,7 @@ import { Controller, Get, Post, Put, Patch, Param, Body, Query, UseGuards } from
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { Roles } from '../../common/decorators/roles.decorator';
+import { UserRole } from '../../common/enums/user-role.enum';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { EnterprisesService } from './enterprises.service';
 import { CreateEnterpriseDto } from './dto/create-enterprise.dto';
@@ -12,7 +13,7 @@ import { ListEnterprisesDto } from './dto/list-enterprises.dto';
 
 @Controller('admin/enterprises')
 @UseGuards(JwtAuthGuard, RolesGuard)
-@Roles('ADMIN')
+@Roles(UserRole.ADMIN)
 export class AdminEnterprisesController {
   constructor(private readonly enterprisesService: EnterprisesService) { }
 

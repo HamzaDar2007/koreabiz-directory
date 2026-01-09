@@ -1,11 +1,5 @@
 import { IsEnum, IsOptional, IsString } from 'class-validator';
-
-export enum ClaimStatus {
-  SUBMITTED = 'SUBMITTED',
-  IN_REVIEW = 'IN_REVIEW',
-  APPROVED = 'APPROVED',
-  REJECTED = 'REJECTED'
-}
+import { ClaimStatus } from '../../../common/enums/claim-status.enum';
 
 export class ReviewClaimDto {
   @IsEnum(ClaimStatus)

@@ -42,12 +42,6 @@ export class Enterprise {
   @Column({ name: 'city_id', nullable: true })
   cityId: string;
 
-  @Column({ type: 'decimal', precision: 10, scale: 7, nullable: true })
-  latitude: number;
-
-  @Column({ type: 'decimal', precision: 10, scale: 7, nullable: true })
-  longitude: number;
-
   @Column({ name: 'rating_avg', type: 'decimal', precision: 2, scale: 1, default: 0.0 })
   ratingAvg: number;
 

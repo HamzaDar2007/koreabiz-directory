@@ -1,18 +1,18 @@
-import { IsEnum, IsDateString, IsUUID } from 'class-validator';
-
-export enum SubscriptionStatus {
-  ACTIVE = 'ACTIVE',
-  CANCELLED = 'CANCELLED',
-  EXPIRED = 'EXPIRED'
-}
+import { IsEnum, IsOptional, IsString, IsDateString } from 'class-validator';
+import { SubscriptionTier } from '../../../common/enums/subscription-tier.enum';
 
 export class SubscriptionStatusDto {
-  @IsUUID()
-  planId: string;
+  @IsEnum(SubscriptionTier)
+  tier: SubscriptionTier;
 
-  @IsEnum(SubscriptionStatus)
-  status: SubscriptionStatus;
+  @IsString()
+  status: string;
 
+  @IsOptional()
   @IsDateString()
-  expiresAt: string;
+  currentPeriodStart?: string;
+
+  @IsOptional()
+  @IsDateString()
+  currentPeriodEnd?: string;
 }

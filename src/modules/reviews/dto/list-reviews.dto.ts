@@ -1,13 +1,20 @@
-import { IsOptional, IsUUID, IsEnum, IsInt, Min, Max } from 'class-validator';
+import { IsOptional, IsInt, Min, IsUUID, IsEnum } from 'class-validator';
 import { Type } from 'class-transformer';
-
-export enum ReviewStatus {
-  PENDING = 'PENDING',
-  PUBLISHED = 'PUBLISHED',
-  REJECTED = 'REJECTED'
-}
+import { ReviewStatus } from '../../../common/enums/review-status.enum';
 
 export class ListReviewsDto {
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  page?: number = 1;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  limit?: number = 20;
+
   @IsOptional()
   @IsUUID()
   enterpriseId?: string;
@@ -20,18 +27,5 @@ export class ListReviewsDto {
   @Type(() => Number)
   @IsInt()
   @Min(1)
-  @Max(5)
   rating?: number;
-
-  @IsOptional()
-  @Type(() => Number)
-  @IsInt()
-  @Min(1)
-  page?: number = 1;
-
-  @IsOptional()
-  @Type(() => Number)
-  @IsInt()
-  @Min(1)
-  limit?: number = 20;
 }

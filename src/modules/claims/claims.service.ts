@@ -101,4 +101,30 @@ export class ClaimsService {
 
     return claim;
   }
+
+  async findOne(id: string) {
+    const claim = await this.claimsRepository.findOne({ where: { id } });
+    if (!claim) {
+      throw new NotFoundException('Claim not found');
+    }
+    return claim;
+  }
+
+  async update(id: string, dto: SubmitClaimDto, userId: string) {
+    const claim = await this.findOne(id);
+    if (claim.requesterUserId !== userId) {
+      throw new NotFoundException('Claim not found');
+    }
+    Object.assign(claim, dto);
+    return this.claimsRepository.save(claim);
+  }
+
+  async remove(id: string, userId: string) {
+    const claim = await this.findOne(id);
+    if (claim.requesterUserId !== userId) {
+      throw new NotFoundException('Claim not found');
+    }
+    await this.claimsRepository.remove(claim);
+    return { success: true };
+  }
 }

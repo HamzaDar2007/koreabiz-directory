@@ -62,12 +62,15 @@ describe('Media & File Upload E2E Tests', () => {
       .set('Authorization', `Bearer ${userToken}`)
       .send({
         name: 'Media Test Enterprise',
-        shortDescription: 'For media testing',
-        latitude: 37.5665,
-        longitude: 126.9780
-      });
+        shortDescription: 'For media testing'
+      })
+      .expect(201);
 
     enterpriseId = enterpriseResponse.body.id;
+
+    if (!enterpriseId) {
+      throw new Error('Failed to create enterprise for media tests');
+    }
   });
 
   afterAll(async () => {
@@ -81,7 +84,9 @@ describe('Media & File Upload E2E Tests', () => {
         .set('Authorization', `Bearer ${userToken}`)
         .send({
           fileName: 'test-logo.jpg',
+          fileType: 'image/jpeg',
           contentType: 'image/jpeg',
+          fileSize: 1024,
           mediaType: 'LOGO'
         })
         .expect(201);
@@ -95,8 +100,10 @@ describe('Media & File Upload E2E Tests', () => {
         .post(`/v1/media/enterprises/${enterpriseId}/register`)
         .set('Authorization', `Bearer ${userToken}`)
         .send({
-          key: 'test-key-123',
+          kind: 'LOGO',
           mediaType: 'LOGO',
+          storageKey: 'test-key-123',
+          key: 'test-key-123',
           contentType: 'image/jpeg',
           fileSize: 1024,
           width: 200,
@@ -123,7 +130,9 @@ describe('Media & File Upload E2E Tests', () => {
         .set('Authorization', `Bearer ${userToken}`)
         .send({
           fileName: 'test.jpg',
+          fileType: 'image/jpeg',
           contentType: 'image/jpeg',
+          fileSize: 1024,
           mediaType: 'INVALID_TYPE'
         })
         .expect(400);
@@ -134,8 +143,10 @@ describe('Media & File Upload E2E Tests', () => {
         .post(`/v1/media/enterprises/${enterpriseId}/register`)
         .set('Authorization', `Bearer ${userToken}`)
         .send({
-          key: 'large-file-key',
+          kind: 'LOGO',
           mediaType: 'LOGO',
+          storageKey: 'large-file-key',
+          key: 'large-file-key',
           contentType: 'image/jpeg',
           fileSize: 50 * 1024 * 1024 // 50MB - should be too large
         })
@@ -147,7 +158,9 @@ describe('Media & File Upload E2E Tests', () => {
         .post(`/v1/media/enterprises/${enterpriseId}/presigned`)
         .send({
           fileName: 'unauthorized.jpg',
+          fileType: 'image/jpeg',
           contentType: 'image/jpeg',
+          fileSize: 1024,
           mediaType: 'LOGO'
         })
         .expect(401);
@@ -159,11 +172,14 @@ describe('Media & File Upload E2E Tests', () => {
         .post(`/v1/media/enterprises/${enterpriseId}/register`)
         .set('Authorization', `Bearer ${userToken}`)
         .send({
-          key: 'delete-test-key',
+          kind: 'GALLERY',
           mediaType: 'GALLERY',
+          storageKey: 'delete-test-key',
+          key: 'delete-test-key',
           contentType: 'image/jpeg',
           fileSize: 1024
-        });
+        })
+        .expect(201);
 
       const mediaId = registerResponse.body.id;
 

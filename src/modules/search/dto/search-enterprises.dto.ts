@@ -1,32 +1,46 @@
-import { IsOptional, IsString, IsUUID, IsBoolean, IsInt, Min, Max, IsNumber } from 'class-validator';
-import { Type } from 'class-transformer';
+import { IsOptional, IsString, IsInt, Min, IsUUID, IsBoolean, IsNumber } from 'class-validator';
+import { Type, Transform } from 'class-transformer';
 
 export class SearchEnterprisesDto {
+  @IsOptional()
+  @IsString()
+  q?: string;
+
   @IsOptional()
   @IsString()
   query?: string;
 
   @IsOptional()
-  @IsString() // Changed from IsUUID to handle slug/name in tests
-  category?: string;
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  page?: number = 1;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  limit?: number = 20;
 
   @IsOptional()
   @IsUUID()
   categoryId?: string;
 
   @IsOptional()
-  @IsString() // Changed to handle city name in tests
-  city?: string;
+  @IsString()
+  category?: string;
 
   @IsOptional()
   @IsUUID()
   cityId?: string;
 
   @IsOptional()
+  @IsString()
+  city?: string;
+
+  @IsOptional()
   @Type(() => Number)
   @IsInt()
-  @Min(1)
-  @Max(4)
   priceRange?: number;
 
   @IsOptional()
@@ -40,14 +54,9 @@ export class SearchEnterprisesDto {
   maxPrice?: number;
 
   @IsOptional()
-  @Type(() => Boolean)
+  @Transform(({ value }) => value === 'true')
   @IsBoolean()
   verified?: boolean;
-
-  @IsOptional()
-  @Type(() => Boolean)
-  @IsBoolean()
-  openNow?: boolean;
 
   @IsOptional()
   @Type(() => Number)
@@ -71,16 +80,4 @@ export class SearchEnterprisesDto {
   @IsOptional()
   @IsString()
   sortOrder?: 'ASC' | 'DESC';
-
-  @IsOptional()
-  @Type(() => Number)
-  @IsInt()
-  @Min(1)
-  page?: number = 1;
-
-  @IsOptional()
-  @Type(() => Number)
-  @IsInt()
-  @Min(1)
-  limit?: number = 20;
 }

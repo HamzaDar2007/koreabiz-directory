@@ -96,4 +96,30 @@ export class ReviewsService {
       ratingCount,
     });
   }
+
+  async findOne(id: string) {
+    const review = await this.reviewsRepository.findOne({ where: { id } });
+    if (!review) {
+      throw new NotFoundException('Review not found');
+    }
+    return review;
+  }
+
+  async update(id: string, dto: CreateReviewDto, userId: string) {
+    const review = await this.findOne(id);
+    if (review.authorUserId !== userId) {
+      throw new NotFoundException('Review not found');
+    }
+    Object.assign(review, dto);
+    return this.reviewsRepository.save(review);
+  }
+
+  async remove(id: string, userId: string) {
+    const review = await this.findOne(id);
+    if (review.authorUserId !== userId) {
+      throw new NotFoundException('Review not found');
+    }
+    await this.reviewsRepository.remove(review);
+    return { success: true };
+  }
 }

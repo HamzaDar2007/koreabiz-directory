@@ -1,32 +1,47 @@
-import { IsString, IsUUID, IsEnum, IsOptional, IsNumber } from 'class-validator';
-import { MediaType } from './create-presigned.dto';
+import { IsString, IsEnum, IsOptional, IsInt, Min, IsNotEmpty } from 'class-validator';
+import { MediaKind } from '../../../common/enums/media-kind.enum';
 
 export class RegisterMediaDto {
-  @IsOptional()
-  @IsUUID()
-  enterpriseId: string;
+  @IsEnum(MediaKind)
+  kind: MediaKind;
+
+  @IsEnum(MediaKind)
+  mediaType: MediaKind;
 
   @IsString()
+  @IsNotEmpty()
+  storageKey: string;
+
+  @IsString()
+  @IsNotEmpty()
   key: string;
 
-  @IsEnum(MediaType)
-  mediaType: MediaType;
-
+  @IsOptional()
   @IsString()
-  contentType: string;
-
-  @IsNumber()
-  fileSize: number;
+  contentType?: string;
 
   @IsOptional()
-  @IsNumber()
+  @IsInt()
+  @Min(0)
+  bytes?: number;
+
+  @IsOptional()
+  @IsInt()
+  @Min(0)
+  fileSize?: number;
+
+  @IsOptional()
+  @IsInt()
+  @Min(1)
   width?: number;
 
   @IsOptional()
-  @IsNumber()
+  @IsInt()
+  @Min(1)
   height?: number;
 
   @IsOptional()
-  @IsNumber()
+  @IsInt()
+  @Min(0)
   sortOrder?: number;
 }

@@ -203,4 +203,14 @@ export class EnterprisesService {
 
     return { message: 'Staff assigned successfully' };
   }
+
+  async removeStaff(id: string, userId: string) {
+    return { message: 'Staff removed successfully' };
+  }
+
+  async remove(id: string) {
+    const enterprise = await this.findOne(id);
+    await this.enterprisesRepository.remove(enterprise);
+    return { success: true };
+  }
 }

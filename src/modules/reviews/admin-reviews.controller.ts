@@ -2,6 +2,7 @@ import { Controller, Get, Patch, Param, Body, Query, UseGuards } from '@nestjs/c
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { Roles } from '../../common/decorators/roles.decorator';
+import { UserRole } from '../../common/enums/user-role.enum';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { ReviewsService } from './reviews.service';
 import { ModerateReviewDto } from './dto/moderate-review.dto';
@@ -9,7 +10,7 @@ import { ListReviewsDto } from './dto/list-reviews.dto';
 
 @Controller('admin/reviews')
 @UseGuards(JwtAuthGuard, RolesGuard)
-@Roles('ADMIN')
+@Roles(UserRole.ADMIN)
 export class AdminReviewsController {
   constructor(private readonly reviewsService: ReviewsService) { }
 

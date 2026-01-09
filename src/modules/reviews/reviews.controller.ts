@@ -1,10 +1,13 @@
-import { Controller, Post, Get, Body, Query, UseGuards, Req, Param } from '@nestjs/common';
+import { Controller, Post, Get, Put, Delete, Body, Query, UseGuards, Req, Param } from '@nestjs/common';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { Public } from '../../common/decorators/public.decorator';
+import { Roles } from '../../common/decorators/roles.decorator';
+import { UserRole } from '../../common/enums/user-role.enum';
 import { ReviewsService } from './reviews.service';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { ListReviewsDto } from './dto/list-reviews.dto';
+import { ModerateReviewDto } from './dto/moderate-review.dto';
 
 @Controller('reviews')
 export class ReviewsController {
@@ -33,6 +36,12 @@ export class ReviewsController {
     };
   }
 
+  @Get(':id')
+  @Public()
+  async findOne(@Param('id') id: string) {
+    return this.reviewsService.findOne(id);
+  }
+
   @Get('enterprise/:enterpriseId')
   @Public()
   async listByEnterprise(
@@ -51,5 +60,24 @@ export class ReviewsController {
         totalPages: Math.ceil(total / limit),
       },
     };
+  }
+
+  @Put(':id')
+  @UseGuards(JwtAuthGuard)
+  async update(@Param('id') id: string, @Body() dto: CreateReviewDto, @CurrentUser() user: any) {
+    return this.reviewsService.update(id, dto, user.id);
+  }
+
+  @Put(':id/moderate')
+  @UseGuards(JwtAuthGuard)
+  @Roles(UserRole.ADMIN)
+  async moderate(@Param('id') id: string, @Body() dto: ModerateReviewDto, @CurrentUser() user: any) {
+    return this.reviewsService.moderate(id, dto, user.id);
+  }
+
+  @Delete(':id')
+  @UseGuards(JwtAuthGuard)
+  async remove(@Param('id') id: string, @CurrentUser() user: any) {
+    return this.reviewsService.remove(id, user.id);
   }
 }

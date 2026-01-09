@@ -24,16 +24,6 @@ export class CreateEnterpriseDto {
   cityId?: string;
 
   @IsOptional()
-  @Type(() => Number)
-  @IsNumber()
-  latitude?: number;
-
-  @IsOptional()
-  @Type(() => Number)
-  @IsNumber()
-  longitude?: number;
-
-  @IsOptional()
   @IsInt()
   @Min(1)
   @Max(5)

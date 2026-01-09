@@ -101,4 +101,9 @@ export class AnalyticsService {
       period: '30 days',
     };
   }
+
+  async clearAnalytics(enterpriseId: string) {
+    await this.analyticsRepository.delete({ enterpriseId });
+    return { success: true };
+  }
 }

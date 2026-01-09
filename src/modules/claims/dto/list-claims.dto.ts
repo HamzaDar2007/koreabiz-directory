@@ -1,12 +1,8 @@
-import { IsOptional, IsEnum, IsInt, Min } from 'class-validator';
+import { IsOptional, IsInt, Min, IsUUID, IsEnum } from 'class-validator';
 import { Type } from 'class-transformer';
-import { ClaimStatus } from './review-claim.dto';
+import { ClaimStatus } from '../../../common/enums/claim-status.enum';
 
 export class ListClaimsDto {
-  @IsOptional()
-  @IsEnum(ClaimStatus)
-  status?: ClaimStatus;
-
   @IsOptional()
   @Type(() => Number)
   @IsInt()
@@ -18,4 +14,12 @@ export class ListClaimsDto {
   @IsInt()
   @Min(1)
   limit?: number = 20;
+
+  @IsOptional()
+  @IsUUID()
+  enterpriseId?: string;
+
+  @IsOptional()
+  @IsEnum(ClaimStatus)
+  status?: ClaimStatus;
 }

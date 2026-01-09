@@ -121,7 +121,7 @@ export class SearchService {
     }
 
     if (dto.sortBy) {
-      const order = dto.sortOrder || 'DESC';
+      const order = (dto.sortOrder || 'DESC') as 'ASC' | 'DESC';
       if (dto.sortBy === 'rating') {
         query.orderBy('enterprise.ratingAvg', order);
       } else {

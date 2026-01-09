@@ -62,4 +62,14 @@ export class UsersService {
       select: ['id', 'email', 'displayName', 'role', 'emailVerified', 'createdAt'],
     });
   }
+
+  async remove(id: string) {
+    const user = await this.usersRepository.findOne({ where: { id } });
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    user.isActive = false;
+    await this.usersRepository.save(user);
+    return { success: true };
+  }
 }
