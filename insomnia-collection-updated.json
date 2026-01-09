@@ -156,7 +156,7 @@
       "method": "POST",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"token\": \"reset-token-here\",\n  \"newPassword\": \"NewPassword123!\"\n}"
+        "text": "{\n  \"token\": \"reset-token-here\",\n  \"password\": \"NewPassword123!\"\n}"
       },
       "parameters": [],
       "headers": [
@@ -363,6 +363,25 @@
       "metaSortKey": -799999997
     },
     {
+      "_id": "req_enterprises_delete",
+      "_type": "request",
+      "parentId": "req_group_enterprises",
+      "name": "Delete Enterprise",
+      "description": "Delete enterprise (Admin only)",
+      "url": "{{ _.baseUrl }}/v1/enterprises/{{ _.enterpriseId }}",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -799999996
+    },
+    {
       "_id": "req_enterprises_mobile",
       "_type": "request",
       "parentId": "req_group_enterprises",
@@ -374,7 +393,78 @@
       "parameters": [],
       "headers": [],
       "authentication": {},
-      "metaSortKey": -799999996
+      "metaSortKey": -799999995
+    },
+    {
+      "_id": "req_enterprises_mobile_image",
+      "_type": "request",
+      "parentId": "req_group_enterprises",
+      "name": "Upload Mobile Image",
+      "description": "Upload mobile image for enterprise",
+      "url": "{{ _.baseUrl }}/v1/enterprises/{{ _.enterpriseId }}/mobile/images",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"imageUrl\": \"https://example.com/image.jpg\",\n  \"altText\": \"Mobile image\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -799999994
+    },
+    {
+      "_id": "req_enterprises_staff_assign",
+      "_type": "request",
+      "parentId": "req_group_enterprises",
+      "name": "Assign Staff",
+      "description": "Assign staff to enterprise",
+      "url": "{{ _.baseUrl }}/v1/enterprises/{{ _.enterpriseId }}/staff",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"userId\": \"{{ _.userId }}\",\n  \"role\": \"MANAGER\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -799999993
+    },
+    {
+      "_id": "req_enterprises_staff_remove",
+      "_type": "request",
+      "parentId": "req_group_enterprises",
+      "name": "Remove Staff",
+      "description": "Remove staff from enterprise",
+      "url": "{{ _.baseUrl }}/v1/enterprises/{{ _.enterpriseId }}/staff/{{ _.userId }}",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -799999992
     },
     {
       "_id": "req_group_search",
@@ -416,52 +506,12 @@
           "value": ""
         },
         {
-          "name": "category",
-          "value": ""
-        },
-        {
           "name": "cityId",
-          "value": ""
-        },
-        {
-          "name": "city",
-          "value": ""
-        },
-        {
-          "name": "priceRange",
-          "value": ""
-        },
-        {
-          "name": "minPrice",
-          "value": ""
-        },
-        {
-          "name": "maxPrice",
           "value": ""
         },
         {
           "name": "verified",
           "value": ""
-        },
-        {
-          "name": "lat",
-          "value": "37.5665"
-        },
-        {
-          "name": "lng",
-          "value": "126.9780"
-        },
-        {
-          "name": "radius",
-          "value": "10"
-        },
-        {
-          "name": "sortBy",
-          "value": "rating"
-        },
-        {
-          "name": "sortOrder",
-          "value": "DESC"
         }
       ],
       "headers": [],
@@ -547,18 +597,103 @@
       "metaSortKey": -599999999
     },
     {
-      "_id": "req_categories_by_slug",
+      "_id": "req_categories_by_id",
       "_type": "request",
       "parentId": "req_group_categories",
-      "name": "Get Category by Slug",
-      "description": "Get category by slug or ID",
-      "url": "{{ _.baseUrl }}/v1/categories/restaurants",
+      "name": "Get Category by ID",
+      "description": "Get category by ID or slug",
+      "url": "{{ _.baseUrl }}/v1/categories/{{ _.categoryId }}",
       "method": "GET",
       "body": {},
       "parameters": [],
       "headers": [],
       "authentication": {},
       "metaSortKey": -599999998
+    },
+    {
+      "_id": "req_categories_by_slug",
+      "_type": "request",
+      "parentId": "req_group_categories",
+      "name": "Get Category by Slug",
+      "description": "Get category by slug",
+      "url": "{{ _.baseUrl }}/v1/categories/slug/restaurants",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -599999997
+    },
+    {
+      "_id": "req_categories_create",
+      "_type": "request",
+      "parentId": "req_group_categories",
+      "name": "Create Category",
+      "description": "Create new category (Admin only)",
+      "url": "{{ _.baseUrl }}/v1/categories",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"New Category\",\n  \"slug\": \"new-category\",\n  \"description\": \"Category description\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -599999996
+    },
+    {
+      "_id": "req_categories_update",
+      "_type": "request",
+      "parentId": "req_group_categories",
+      "name": "Update Category",
+      "description": "Update category (Admin only)",
+      "url": "{{ _.baseUrl }}/v1/categories/{{ _.categoryId }}",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Updated Category\",\n  \"description\": \"Updated description\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -599999995
+    },
+    {
+      "_id": "req_categories_delete",
+      "_type": "request",
+      "parentId": "req_group_categories",
+      "name": "Delete Category",
+      "description": "Delete category (Admin only)",
+      "url": "{{ _.baseUrl }}/v1/categories/{{ _.categoryId }}",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -599999994
     },
     {
       "_id": "req_group_cities",
@@ -611,18 +746,103 @@
       "metaSortKey": -499999999
     },
     {
-      "_id": "req_cities_by_slug",
+      "_id": "req_cities_by_id",
       "_type": "request",
       "parentId": "req_group_cities",
-      "name": "Get City by Slug",
-      "description": "Get city by slug or ID",
-      "url": "{{ _.baseUrl }}/v1/cities/seoul",
+      "name": "Get City by ID",
+      "description": "Get city by ID or slug",
+      "url": "{{ _.baseUrl }}/v1/cities/{{ _.cityId }}",
       "method": "GET",
       "body": {},
       "parameters": [],
       "headers": [],
       "authentication": {},
       "metaSortKey": -499999998
+    },
+    {
+      "_id": "req_cities_by_slug",
+      "_type": "request",
+      "parentId": "req_group_cities",
+      "name": "Get City by Slug",
+      "description": "Get city by slug",
+      "url": "{{ _.baseUrl }}/v1/cities/slug/seoul",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -499999997
+    },
+    {
+      "_id": "req_cities_create",
+      "_type": "request",
+      "parentId": "req_group_cities",
+      "name": "Create City",
+      "description": "Create new city (Admin only)",
+      "url": "{{ _.baseUrl }}/v1/cities",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"New City\",\n  \"slug\": \"new-city\",\n  \"description\": \"City description\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -499999996
+    },
+    {
+      "_id": "req_cities_update",
+      "_type": "request",
+      "parentId": "req_group_cities",
+      "name": "Update City",
+      "description": "Update city (Admin only)",
+      "url": "{{ _.baseUrl }}/v1/cities/{{ _.cityId }}",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Updated City\",\n  \"description\": \"Updated description\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -499999995
+    },
+    {
+      "_id": "req_cities_delete",
+      "_type": "request",
+      "parentId": "req_group_cities",
+      "name": "Delete City",
+      "description": "Delete city (Admin only)",
+      "url": "{{ _.baseUrl }}/v1/cities/{{ _.cityId }}",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -499999994
     },
     {
       "_id": "req_group_reviews",
@@ -695,6 +915,20 @@
       "metaSortKey": -399999999
     },
     {
+      "_id": "req_reviews_get",
+      "_type": "request",
+      "parentId": "req_group_reviews",
+      "name": "Get Review by ID",
+      "description": "Get review by ID",
+      "url": "{{ _.baseUrl }}/v1/reviews/{{ _.reviewId }}",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -399999998
+    },
+    {
       "_id": "req_reviews_by_enterprise",
       "_type": "request",
       "parentId": "req_group_reviews",
@@ -715,7 +949,78 @@
       ],
       "headers": [],
       "authentication": {},
-      "metaSortKey": -399999998
+      "metaSortKey": -399999997
+    },
+    {
+      "_id": "req_reviews_update",
+      "_type": "request",
+      "parentId": "req_group_reviews",
+      "name": "Update Review",
+      "description": "Update user's own review",
+      "url": "{{ _.baseUrl }}/v1/reviews/{{ _.reviewId }}",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"rating\": 4,\n  \"comment\": \"Updated review comment\",\n  \"authorName\": \"John Doe\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -399999996
+    },
+    {
+      "_id": "req_reviews_moderate",
+      "_type": "request",
+      "parentId": "req_group_reviews",
+      "name": "Moderate Review",
+      "description": "Moderate review (Admin only)",
+      "url": "{{ _.baseUrl }}/v1/reviews/{{ _.reviewId }}/moderate",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"status\": \"PUBLISHED\",\n  \"moderationNotes\": \"Approved after review\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -399999995
+    },
+    {
+      "_id": "req_reviews_delete",
+      "_type": "request",
+      "parentId": "req_group_reviews",
+      "name": "Delete Review",
+      "description": "Delete user's own review",
+      "url": "{{ _.baseUrl }}/v1/reviews/{{ _.reviewId }}",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -399999994
     },
     {
       "_id": "req_group_favorites",
@@ -869,6 +1174,70 @@
       ],
       "authentication": {},
       "metaSortKey": -199999999
+    },
+    {
+      "_id": "req_claims_get",
+      "_type": "request",
+      "parentId": "req_group_claims",
+      "name": "Get Claim by ID",
+      "description": "Get claim by ID",
+      "url": "{{ _.baseUrl }}/v1/claims/{{ _.claimId }}",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -199999998
+    },
+    {
+      "_id": "req_claims_update",
+      "_type": "request",
+      "parentId": "req_group_claims",
+      "name": "Update Claim",
+      "description": "Update user's claim",
+      "url": "{{ _.baseUrl }}/v1/claims/{{ _.claimId }}",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"requesterName\": \"Updated Name\",\n  \"requesterPhone\": \"+82-10-9876-5432\",\n  \"proofOfOwnership\": \"Updated proof documents\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -199999997
+    },
+    {
+      "_id": "req_claims_delete",
+      "_type": "request",
+      "parentId": "req_group_claims",
+      "name": "Delete Claim",
+      "description": "Delete user's claim",
+      "url": "{{ _.baseUrl }}/v1/claims/{{ _.claimId }}",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -199999996
     },
     {
       "_id": "req_group_media",
@@ -1143,6 +1512,86 @@
       "metaSortKey": -24999998
     },
     {
+      "_id": "req_group_rbac",
+      "_type": "request_group",
+      "name": "🔐 RBAC",
+      "description": "Role-Based Access Control endpoints",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -20000000
+    },
+    {
+      "_id": "req_rbac_grant_permission",
+      "_type": "request",
+      "parentId": "req_group_rbac",
+      "name": "Grant Permission",
+      "description": "Grant permission to user (Admin only)",
+      "url": "{{ _.baseUrl }}/v1/rbac/permissions",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"userId\": \"{{ _.userId }}\",\n  \"permission\": \"MANAGE_ENTERPRISE\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -20000000
+    },
+    {
+      "_id": "req_rbac_revoke_permission",
+      "_type": "request",
+      "parentId": "req_group_rbac",
+      "name": "Revoke Permission",
+      "description": "Revoke permission from user (Admin only)",
+      "url": "{{ _.baseUrl }}/v1/rbac/permissions",
+      "method": "DELETE",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"userId\": \"{{ _.userId }}\",\n  \"permission\": \"MANAGE_ENTERPRISE\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -19999999
+    },
+    {
+      "_id": "req_rbac_list_permissions",
+      "_type": "request",
+      "parentId": "req_group_rbac",
+      "name": "List Permissions",
+      "description": "List all available permissions (Admin only)",
+      "url": "{{ _.baseUrl }}/v1/rbac/permissions",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.accessToken }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -19999998
+    },
+    {
       "_id": "req_group_admin",
       "_type": "request_group",
       "name": "👑 Admin",
@@ -1334,7 +1783,7 @@
       "_id": "req_admin_enterprises_staff",
       "_type": "request",
       "parentId": "req_group_admin",
-      "name": "Assign Staff",
+      "name": "Assign Staff (Admin)",
       "description": "Assign staff to enterprise (admin only)",
       "url": "{{ _.baseUrl }}/v1/admin/enterprises/{{ _.enterpriseId }}/staff",
       "method": "POST",
@@ -1392,7 +1841,7 @@
       "_id": "req_admin_reviews_moderate",
       "_type": "request",
       "parentId": "req_group_admin",
-      "name": "Moderate Review",
+      "name": "Moderate Review (Admin)",
       "description": "Moderate review (admin only)",
       "url": "{{ _.baseUrl }}/v1/admin/reviews/{{ _.reviewId }}/moderate",
       "method": "PATCH",
@@ -1446,7 +1895,7 @@
       "_id": "req_admin_claims_review",
       "_type": "request",
       "parentId": "req_group_admin",
-      "name": "Review Claim",
+      "name": "Review Claim (Admin)",
       "description": "Review ownership claim (admin only)",
       "url": "{{ _.baseUrl }}/v1/admin/claims/{{ _.claimId }}/review",
       "method": "PATCH",
@@ -1586,7 +2035,8 @@
         "mediaId": "",
         "userId": "",
         "reviewId": "",
-        "claimId": ""
+        "claimId": "",
+        "permissionId": ""
       },
       "dataPropertyOrder": {
         "&": [
@@ -1600,7 +2050,8 @@
           "mediaId",
           "userId",
           "reviewId",
-          "claimId"
+          "claimId",
+          "permissionId"
         ]
       },
       "color": null,
