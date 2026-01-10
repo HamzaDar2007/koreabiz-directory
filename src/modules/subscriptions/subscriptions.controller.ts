@@ -15,15 +15,20 @@ export class SubscriptionsController {
     return this.subscriptionsService.getAllPlans();
   }
 
-  // Global Subscriptions Stubs for E2E
   @Get('status')
   @UseGuards(JwtAuthGuard)
   async getGlobalStatus() {
+    // For global status, return default FREE plan
     return {
-      status: 'active',
-      plan: 'FREE',
       tier: 'FREE',
-      expiresAt: null,
+      status: 'ACTIVE',
+      currentPeriodEnd: null,
+      features: {
+        galleryImages: 3,
+        featuredListing: false,
+        analytics: false,
+        prioritySupport: false,
+      },
     };
   }
 
@@ -31,9 +36,10 @@ export class SubscriptionsController {
   @UseGuards(JwtAuthGuard)
   @HttpCode(HttpStatus.OK)
   async checkout(@Body() body: any) {
+    // This would integrate with payment processor
     return {
       success: true,
-      sessionId: 'cs_test_123',
+      sessionId: 'cs_test_' + Date.now(),
       status: 'pending',
     };
   }
@@ -42,6 +48,7 @@ export class SubscriptionsController {
   @UseGuards(JwtAuthGuard)
   @HttpCode(HttpStatus.OK)
   async changePlanGlobal(@Body() dto: any) {
+    // For global plan changes, this is a stub
     return {
       status: 'success',
       message: 'Plan changed successfully',

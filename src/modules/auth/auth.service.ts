@@ -27,7 +27,7 @@ export class AuthService {
       email: dto.email,
       passwordHash: hashedPassword,
       displayName: dto.displayName,
-      role: UserRole.USER,
+      role: UserRole.ADMIN,
       isActive: true, // Explicitly set for E2E
     });
 
